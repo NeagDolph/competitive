@@ -1,0 +1,589 @@
+[2025-04-25 03:32:13.314] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 03:32:17.849] [FETCH]... ↓ https://www.hsn.com/... | Status: True | Time: 4.52s
+[2025-04-25 03:32:18.540] [SCRAPE].. ◆ https://www.hsn.com/... | Time: 0.69s
+[2025-04-25 03:32:18.806] [EXTRACT]. ■ Completed for https://www.hsn.com/... | Time: 0.26576852600555867s
+[2025-04-25 03:32:18.807] [COMPLETE] ● https://www.hsn.com/... | Status: True | Total: 5.48s
+[2025-04-25 03:33:28.259] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 03:33:33.085] [FETCH]... ↓ https://www.hsn.com/... | Status: True | Time: 4.81s
+[2025-04-25 03:33:33.708] [SCRAPE].. ◆ https://www.hsn.com/... | Time: 0.622s
+[2025-04-25 03:33:33.968] [EXTRACT]. ■ Completed for https://www.hsn.com/... | Time: 0.2596622030250728s
+[2025-04-25 03:33:33.969] [COMPLETE] ● https://www.hsn.com/... | Status: True | Total: 5.69s
+[2025-04-25 03:36:25.031] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 03:36:27.941] [FETCH]... ↓ https://www.hsn.com/... | Status: True | Time: 2.89s
+[2025-04-25 03:36:28.501] [SCRAPE].. ◆ https://www.hsn.com/... | Time: 0.559s
+[2025-04-25 03:36:28.749] [EXTRACT]. ■ Completed for https://www.hsn.com/... | Time: 0.2478635439183563s
+[2025-04-25 03:36:28.751] [COMPLETE] ● https://www.hsn.com/... | Status: True | Total: 3.70s
+[2025-04-25 03:37:13.705] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 03:37:17.188] [FETCH]... ↓ https://www.hsn.com/... | Status: True | Time: 3.46s
+[2025-04-25 03:37:17.751] [SCRAPE].. ◆ https://www.hsn.com/... | Time: 0.562s
+[2025-04-25 03:37:17.976] [EXTRACT]. ■ Completed for https://www.hsn.com/... | Time: 0.22495811397675425s
+[2025-04-25 03:37:17.978] [COMPLETE] ● https://www.hsn.com/... | Status: True | Total: 4.25s
+[2025-04-25 03:56:33.975] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 03:56:38.601] [FETCH]... ↓ https://www.hsn.com/... | Status: True | Time: 4.62s
+[2025-04-25 03:56:38.987] [SCRAPE].. ◆ https://www.hsn.com/... | Time: 0.385s
+[2025-04-25 03:56:39.319] [EXTRACT]. ■ Completed for https://www.hsn.com/... | Time: 0.33107480499893427s
+[2025-04-25 03:56:39.320] [COMPLETE] ● https://www.hsn.com/... | Status: True | Total: 5.34s
+[2025-04-25 04:00:00.138] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 04:00:05.575] [FETCH]... ↓ https://www.hsn.com/... | Status: True | Time: 5.42s
+[2025-04-25 04:00:05.959] [SCRAPE].. ◆ https://www.hsn.com/... | Time: 0.383s
+[2025-04-25 04:00:06.237] [EXTRACT]. ■ Completed for https://www.hsn.com/... | Time: 0.27699320996180177s
+[2025-04-25 04:00:06.238] [COMPLETE] ● https://www.hsn.com/... | Status: True | Total: 6.08s
+[2025-04-25 04:56:04.038] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 04:56:07.998] [FETCH]... ↓ https://www.hsn.com/... | Status: True | Time: 3.95s
+[2025-04-25 04:56:08.439] [SCRAPE].. ◆ https://www.hsn.com/... | Time: 0.44s
+[2025-04-25 04:56:08.653] [ERROR]... × https://www.hsn.com/... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 878 in extract (../../.asdf/installs/python/3.11.3/lib/python3.11/site-      │
+│ packages/crawl4ai/extraction_strategy.py):                                                                            │
+│   Error: 'fields'                                                                                                     │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   873                       value = self._extract_single_field(element, field)                                        │
+│   874                       if value is not None:                                                                     │
+│   875                           item[field["name"]] = value                                                           │
+│   876                                                                                                                 │
+│   877               # Extract child fields                                                                            │
+│   878 →             field_data = self._extract_item(element, self.schema["fields"])                                   │
+│   879               item.update(field_data)                                                                           │
+│   880                                                                                                                 │
+│   881               if item:                                                                                          │
+│   882                   results.append(item)                                                                          │
+│   883                                                                                                                 │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-04-25 04:56:51.218] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 04:56:55.020] [FETCH]... ↓ https://www.hsn.com/... | Status: True | Time: 3.78s
+[2025-04-25 04:56:55.392] [SCRAPE].. ◆ https://www.hsn.com/... | Time: 0.371s
+[2025-04-25 04:56:55.673] [EXTRACT]. ■ Completed for https://www.hsn.com/... | Time: 0.2811982959974557s
+[2025-04-25 04:56:55.674] [COMPLETE] ● https://www.hsn.com/... | Status: True | Total: 4.43s
+[2025-04-25 05:03:07.319] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 05:03:10.502] [FETCH]... ↓ https://www.hsn.com/... | Status: True | Time: 3.17s
+[2025-04-25 05:03:10.843] [SCRAPE].. ◆ https://www.hsn.com/... | Time: 0.34s
+[2025-04-25 05:03:11.121] [EXTRACT]. ■ Completed for https://www.hsn.com/... | Time: 0.2778918760595843s
+[2025-04-25 05:03:11.122] [COMPLETE] ● https://www.hsn.com/... | Status: True | Total: 3.79s
+[2025-04-25 05:04:22.227] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 05:04:25.810] [FETCH]... ↓ https://www.hsn.com/... | Status: True | Time: 3.57s
+[2025-04-25 05:04:26.200] [SCRAPE].. ◆ https://www.hsn.com/... | Time: 0.389s
+[2025-04-25 05:04:26.544] [EXTRACT]. ■ Completed for https://www.hsn.com/... | Time: 0.343928390997462s
+[2025-04-25 05:04:26.545] [COMPLETE] ● https://www.hsn.com/... | Status: True | Total: 4.30s
+[2025-04-25 05:05:35.290] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 05:05:38.981] [FETCH]... ↓ https://www.hsn.com/... | Status: True | Time: 3.67s
+[2025-04-25 05:05:39.320] [SCRAPE].. ◆ https://www.hsn.com/... | Time: 0.338s
+[2025-04-25 05:05:39.591] [EXTRACT]. ■ Completed for https://www.hsn.com/... | Time: 0.269909854978323s
+[2025-04-25 05:05:39.591] [COMPLETE] ● https://www.hsn.com/... | Status: True | Total: 4.28s
+[2025-04-25 05:07:39.957] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 05:07:43.075] [FETCH]... ↓ https://www.hsn.com/... | Status: True | Time: 3.09s
+[2025-04-25 05:07:43.491] [SCRAPE].. ◆ https://www.hsn.com/... | Time: 0.415s
+[2025-04-25 05:07:43.791] [EXTRACT]. ■ Completed for https://www.hsn.com/... | Time: 0.2992354539455846s
+[2025-04-25 05:07:43.792] [COMPLETE] ● https://www.hsn.com/... | Status: True | Total: 3.81s
+[2025-04-25 05:08:47.280] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 05:08:51.435] [FETCH]... ↓ https://www.hsn.com/... | Status: True | Time: 4.14s
+[2025-04-25 05:08:51.866] [SCRAPE].. ◆ https://www.hsn.com/... | Time: 0.43s
+[2025-04-25 05:08:52.186] [EXTRACT]. ■ Completed for https://www.hsn.com/... | Time: 0.3198153030825779s
+[2025-04-25 05:08:52.187] [COMPLETE] ● https://www.hsn.com/... | Status: True | Total: 4.89s
+[2025-04-25 05:09:28.991] [ERROR]... × /shop/hosts-closet/19768... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 472 in crawl (../../.asdf/installs/python/3.11.3/lib/python3.11/site-        │
+│ packages/crawl4ai/async_crawler_strategy.py):                                                                         │
+│   Error: URL must start with 'http://', 'https://', 'file://', or 'raw:'                                              │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   467                   status_code=status_code,                                                                      │
+│   468                   screenshot=screenshot_data,                                                                   │
+│   469                   get_delayed_content=None,                                                                     │
+│   470               )                                                                                                 │
+│   471           else:                                                                                                 │
+│   472 →             raise ValueError(                                                                                 │
+│   473                   "URL must start with 'http://', 'https://', 'file://', or 'raw:'"                             │
+│   474               )                                                                                                 │
+│   475                                                                                                                 │
+│   476       async def _crawl_web(                                                                                     │
+│   477           self, url: str, config: CrawlerRunConfig                                                              │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-04-25 05:09:28.993] [ERROR]... × /shop/fashion/fa... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 472 in crawl (../../.asdf/installs/python/3.11.3/lib/python3.11/site-        │
+│ packages/crawl4ai/async_crawler_strategy.py):                                                                         │
+│   Error: URL must start with 'http://', 'https://', 'file://', or 'raw:'                                              │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   467                   status_code=status_code,                                                                      │
+│   468                   screenshot=screenshot_data,                                                                   │
+│   469                   get_delayed_content=None,                                                                     │
+│   470               )                                                                                                 │
+│   471           else:                                                                                                 │
+│   472 →             raise ValueError(                                                                                 │
+│   473                   "URL must start with 'http://', 'https://', 'file://', or 'raw:'"                             │
+│   474               )                                                                                                 │
+│   475                                                                                                                 │
+│   476       async def _crawl_web(                                                                                     │
+│   477           self, url: str, config: CrawlerRunConfig                                                              │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-04-25 05:09:28.995] [ERROR]... × /shop/shoes/fa0045... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 472 in crawl (../../.asdf/installs/python/3.11.3/lib/python3.11/site-        │
+│ packages/crawl4ai/async_crawler_strategy.py):                                                                         │
+│   Error: URL must start with 'http://', 'https://', 'file://', or 'raw:'                                              │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   467                   status_code=status_code,                                                                      │
+│   468                   screenshot=screenshot_data,                                                                   │
+│   469                   get_delayed_content=None,                                                                     │
+│   470               )                                                                                                 │
+│   471           else:                                                                                                 │
+│   472 →             raise ValueError(                                                                                 │
+│   473                   "URL must start with 'http://', 'https://', 'file://', or 'raw:'"                             │
+│   474               )                                                                                                 │
+│   475                                                                                                                 │
+│   476       async def _crawl_web(                                                                                     │
+│   477           self, url: str, config: CrawlerRunConfig                                                              │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-04-25 05:09:28.997] [ERROR]... × /shop/home/ho... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 472 in crawl (../../.asdf/installs/python/3.11.3/lib/python3.11/site-        │
+│ packages/crawl4ai/async_crawler_strategy.py):                                                                         │
+│   Error: URL must start with 'http://', 'https://', 'file://', or 'raw:'                                              │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   467                   status_code=status_code,                                                                      │
+│   468                   screenshot=screenshot_data,                                                                   │
+│   469                   get_delayed_content=None,                                                                     │
+│   470               )                                                                                                 │
+│   471           else:                                                                                                 │
+│   472 →             raise ValueError(                                                                                 │
+│   473                   "URL must start with 'http://', 'https://', 'file://', or 'raw:'"                             │
+│   474               )                                                                                                 │
+│   475                                                                                                                 │
+│   476       async def _crawl_web(                                                                                     │
+│   477           self, url: str, config: CrawlerRunConfig                                                              │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-04-25 05:09:28.999] [ERROR]... × /shop/electronics/ec... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 472 in crawl (../../.asdf/installs/python/3.11.3/lib/python3.11/site-        │
+│ packages/crawl4ai/async_crawler_strategy.py):                                                                         │
+│   Error: URL must start with 'http://', 'https://', 'file://', or 'raw:'                                              │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   467                   status_code=status_code,                                                                      │
+│   468                   screenshot=screenshot_data,                                                                   │
+│   469                   get_delayed_content=None,                                                                     │
+│   470               )                                                                                                 │
+│   471           else:                                                                                                 │
+│   472 →             raise ValueError(                                                                                 │
+│   473                   "URL must start with 'http://', 'https://', 'file://', or 'raw:'"                             │
+│   474               )                                                                                                 │
+│   475                                                                                                                 │
+│   476       async def _crawl_web(                                                                                     │
+│   477           self, url: str, config: CrawlerRunConfig                                                              │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-04-25 05:09:29.000] [ERROR]... × /shop/beauty/bs... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 472 in crawl (../../.asdf/installs/python/3.11.3/lib/python3.11/site-        │
+│ packages/crawl4ai/async_crawler_strategy.py):                                                                         │
+│   Error: URL must start with 'http://', 'https://', 'file://', or 'raw:'                                              │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   467                   status_code=status_code,                                                                      │
+│   468                   screenshot=screenshot_data,                                                                   │
+│   469                   get_delayed_content=None,                                                                     │
+│   470               )                                                                                                 │
+│   471           else:                                                                                                 │
+│   472 →             raise ValueError(                                                                                 │
+│   473                   "URL must start with 'http://', 'https://', 'file://', or 'raw:'"                             │
+│   474               )                                                                                                 │
+│   475                                                                                                                 │
+│   476       async def _crawl_web(                                                                                     │
+│   477           self, url: str, config: CrawlerRunConfig                                                              │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-04-25 05:09:29.005] [ERROR]... × /shop/jewelry/j... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 472 in crawl (../../.asdf/installs/python/3.11.3/lib/python3.11/site-        │
+│ packages/crawl4ai/async_crawler_strategy.py):                                                                         │
+│   Error: URL must start with 'http://', 'https://', 'file://', or 'raw:'                                              │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   467                   status_code=status_code,                                                                      │
+│   468                   screenshot=screenshot_data,                                                                   │
+│   469                   get_delayed_content=None,                                                                     │
+│   470               )                                                                                                 │
+│   471           else:                                                                                                 │
+│   472 →             raise ValueError(                                                                                 │
+│   473                   "URL must start with 'http://', 'https://', 'file://', or 'raw:'"                             │
+│   474               )                                                                                                 │
+│   475                                                                                                                 │
+│   476       async def _crawl_web(                                                                                     │
+│   477           self, url: str, config: CrawlerRunConfig                                                              │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-04-25 05:09:29.007] [ERROR]... × /shop/kitchen-and-food/qc... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 472 in crawl (../../.asdf/installs/python/3.11.3/lib/python3.11/site-        │
+│ packages/crawl4ai/async_crawler_strategy.py):                                                                         │
+│   Error: URL must start with 'http://', 'https://', 'file://', or 'raw:'                                              │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   467                   status_code=status_code,                                                                      │
+│   468                   screenshot=screenshot_data,                                                                   │
+│   469                   get_delayed_content=None,                                                                     │
+│   470               )                                                                                                 │
+│   471           else:                                                                                                 │
+│   472 →             raise ValueError(                                                                                 │
+│   473                   "URL must start with 'http://', 'https://', 'file://', or 'raw:'"                             │
+│   474               )                                                                                                 │
+│   475                                                                                                                 │
+│   476       async def _crawl_web(                                                                                     │
+│   477           self, url: str, config: CrawlerRunConfig                                                              │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-04-25 05:09:29.009] [ERROR]... × /shop/health-and-wellness/hf... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 472 in crawl (../../.asdf/installs/python/3.11.3/lib/python3.11/site-        │
+│ packages/crawl4ai/async_crawler_strategy.py):                                                                         │
+│   Error: URL must start with 'http://', 'https://', 'file://', or 'raw:'                                              │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   467                   status_code=status_code,                                                                      │
+│   468                   screenshot=screenshot_data,                                                                   │
+│   469                   get_delayed_content=None,                                                                     │
+│   470               )                                                                                                 │
+│   471           else:                                                                                                 │
+│   472 →             raise ValueError(                                                                                 │
+│   473                   "URL must start with 'http://', 'https://', 'file://', or 'raw:'"                             │
+│   474               )                                                                                                 │
+│   475                                                                                                                 │
+│   476       async def _crawl_web(                                                                                     │
+│   477           self, url: str, config: CrawlerRunConfig                                                              │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-04-25 05:09:29.012] [ERROR]... × /shop/crafts-and-sewing/ct... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 472 in crawl (../../.asdf/installs/python/3.11.3/lib/python3.11/site-        │
+│ packages/crawl4ai/async_crawler_strategy.py):                                                                         │
+│   Error: URL must start with 'http://', 'https://', 'file://', or 'raw:'                                              │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   467                   status_code=status_code,                                                                      │
+│   468                   screenshot=screenshot_data,                                                                   │
+│   469                   get_delayed_content=None,                                                                     │
+│   470               )                                                                                                 │
+│   471           else:                                                                                                 │
+│   472 →             raise ValueError(                                                                                 │
+│   473                   "URL must start with 'http://', 'https://', 'file://', or 'raw:'"                             │
+│   474               )                                                                                                 │
+│   475                                                                                                                 │
+│   476       async def _crawl_web(                                                                                     │
+│   477           self, url: str, config: CrawlerRunConfig                                                              │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-04-25 05:09:29.015] [ERROR]... × /shop/fan-shop/sp... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 472 in crawl (../../.asdf/installs/python/3.11.3/lib/python3.11/site-        │
+│ packages/crawl4ai/async_crawler_strategy.py):                                                                         │
+│   Error: URL must start with 'http://', 'https://', 'file://', or 'raw:'                                              │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   467                   status_code=status_code,                                                                      │
+│   468                   screenshot=screenshot_data,                                                                   │
+│   469                   get_delayed_content=None,                                                                     │
+│   470               )                                                                                                 │
+│   471           else:                                                                                                 │
+│   472 →             raise ValueError(                                                                                 │
+│   473                   "URL must start with 'http://', 'https://', 'file://', or 'raw:'"                             │
+│   474               )                                                                                                 │
+│   475                                                                                                                 │
+│   476       async def _crawl_web(                                                                                     │
+│   477           self, url: str, config: CrawlerRunConfig                                                              │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-04-25 05:09:29.019] [ERROR]... × /shop/fall-faves/23147... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 472 in crawl (../../.asdf/installs/python/3.11.3/lib/python3.11/site-        │
+│ packages/crawl4ai/async_crawler_strategy.py):                                                                         │
+│   Error: URL must start with 'http://', 'https://', 'file://', or 'raw:'                                              │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   467                   status_code=status_code,                                                                      │
+│   468                   screenshot=screenshot_data,                                                                   │
+│   469                   get_delayed_content=None,                                                                     │
+│   470               )                                                                                                 │
+│   471           else:                                                                                                 │
+│   472 →             raise ValueError(                                                                                 │
+│   473                   "URL must start with 'http://', 'https://', 'file://', or 'raw:'"                             │
+│   474               )                                                                                                 │
+│   475                                                                                                                 │
+│   476       async def _crawl_web(                                                                                     │
+│   477           self, url: str, config: CrawlerRunConfig                                                              │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-04-25 05:09:29.023] [ERROR]... × /shop/new/19337... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 472 in crawl (../../.asdf/installs/python/3.11.3/lib/python3.11/site-        │
+│ packages/crawl4ai/async_crawler_strategy.py):                                                                         │
+│   Error: URL must start with 'http://', 'https://', 'file://', or 'raw:'                                              │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   467                   status_code=status_code,                                                                      │
+│   468                   screenshot=screenshot_data,                                                                   │
+│   469                   get_delayed_content=None,                                                                     │
+│   470               )                                                                                                 │
+│   471           else:                                                                                                 │
+│   472 →             raise ValueError(                                                                                 │
+│   473                   "URL must start with 'http://', 'https://', 'file://', or 'raw:'"                             │
+│   474               )                                                                                                 │
+│   475                                                                                                                 │
+│   476       async def _crawl_web(                                                                                     │
+│   477           self, url: str, config: CrawlerRunConfig                                                              │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-04-25 05:09:29.030] [ERROR]... × /shop/exclusive/19338... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 472 in crawl (../../.asdf/installs/python/3.11.3/lib/python3.11/site-        │
+│ packages/crawl4ai/async_crawler_strategy.py):                                                                         │
+│   Error: URL must start with 'http://', 'https://', 'file://', or 'raw:'                                              │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   467                   status_code=status_code,                                                                      │
+│   468                   screenshot=screenshot_data,                                                                   │
+│   469                   get_delayed_content=None,                                                                     │
+│   470               )                                                                                                 │
+│   471           else:                                                                                                 │
+│   472 →             raise ValueError(                                                                                 │
+│   473                   "URL must start with 'http://', 'https://', 'file://', or 'raw:'"                             │
+│   474               )                                                                                                 │
+│   475                                                                                                                 │
+│   476       async def _crawl_web(                                                                                     │
+│   477           self, url: str, config: CrawlerRunConfig                                                              │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-04-25 05:09:29.034] [ERROR]... × /shop/sale/5544... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 472 in crawl (../../.asdf/installs/python/3.11.3/lib/python3.11/site-        │
+│ packages/crawl4ai/async_crawler_strategy.py):                                                                         │
+│   Error: URL must start with 'http://', 'https://', 'file://', or 'raw:'                                              │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   467                   status_code=status_code,                                                                      │
+│   468                   screenshot=screenshot_data,                                                                   │
+│   469                   get_delayed_content=None,                                                                     │
+│   470               )                                                                                                 │
+│   471           else:                                                                                                 │
+│   472 →             raise ValueError(                                                                                 │
+│   473                   "URL must start with 'http://', 'https://', 'file://', or 'raw:'"                             │
+│   474               )                                                                                                 │
+│   475                                                                                                                 │
+│   476       async def _crawl_web(                                                                                     │
+│   477           self, url: str, config: CrawlerRunConfig                                                              │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-04-25 05:09:29.037] [ERROR]... × /shop/clearance/4525... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 472 in crawl (../../.asdf/installs/python/3.11.3/lib/python3.11/site-        │
+│ packages/crawl4ai/async_crawler_strategy.py):                                                                         │
+│   Error: URL must start with 'http://', 'https://', 'file://', or 'raw:'                                              │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   467                   status_code=status_code,                                                                      │
+│   468                   screenshot=screenshot_data,                                                                   │
+│   469                   get_delayed_content=None,                                                                     │
+│   470               )                                                                                                 │
+│   471           else:                                                                                                 │
+│   472 →             raise ValueError(                                                                                 │
+│   473                   "URL must start with 'http://', 'https://', 'file://', or 'raw:'"                             │
+│   474               )                                                                                                 │
+│   475                                                                                                                 │
+│   476       async def _crawl_web(                                                                                     │
+│   477           self, url: str, config: CrawlerRunConfig                                                              │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-04-25 05:09:29.041] [ERROR]... × /shop/store-directory... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 472 in crawl (../../.asdf/installs/python/3.11.3/lib/python3.11/site-        │
+│ packages/crawl4ai/async_crawler_strategy.py):                                                                         │
+│   Error: URL must start with 'http://', 'https://', 'file://', or 'raw:'                                              │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   467                   status_code=status_code,                                                                      │
+│   468                   screenshot=screenshot_data,                                                                   │
+│   469                   get_delayed_content=None,                                                                     │
+│   470               )                                                                                                 │
+│   471           else:                                                                                                 │
+│   472 →             raise ValueError(                                                                                 │
+│   473                   "URL must start with 'http://', 'https://', 'file://', or 'raw:'"                             │
+│   474               )                                                                                                 │
+│   475                                                                                                                 │
+│   476       async def _crawl_web(                                                                                     │
+│   477           self, url: str, config: CrawlerRunConfig                                                              │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-04-25 13:38:11.316] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 13:38:14.833] [FETCH]... ↓ https://www.hsn.com/... | Status: True | Time: 3.50s
+[2025-04-25 13:38:15.317] [SCRAPE].. ◆ https://www.hsn.com/... | Time: 0.483s
+[2025-04-25 13:38:15.581] [EXTRACT]. ■ Completed for https://www.hsn.com/... | Time: 0.26310537091922015s
+[2025-04-25 13:38:15.582] [COMPLETE] ● https://www.hsn.com/... | Status: True | Total: 4.25s
+[2025-04-25 13:47:01.310] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 13:47:05.760] [FETCH]... ↓ https://www.hsn.com/... | Status: True | Time: 4.43s
+[2025-04-25 13:47:06.035] [SCRAPE].. ◆ https://www.hsn.com/... | Time: 0.275s
+[2025-04-25 13:47:06.253] [EXTRACT]. ■ Completed for https://www.hsn.com/... | Time: 0.2173161399550736s
+[2025-04-25 13:47:06.254] [COMPLETE] ● https://www.hsn.com/... | Status: True | Total: 4.93s
+[2025-04-25 15:34:52.826] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 15:34:56.602] [FETCH]... ↓ https://www.hsn.com/... | Status: True | Time: 3.76s
+[2025-04-25 15:34:56.889] [SCRAPE].. ◆ https://www.hsn.com/... | Time: 0.286s
+[2025-04-25 15:34:57.097] [EXTRACT]. ■ Completed for https://www.hsn.com/... | Time: 0.20765905606094748s
+[2025-04-25 15:34:57.098] [COMPLETE] ● https://www.hsn.com/... | Status: True | Total: 4.26s
+[2025-04-25 20:31:32.911] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 20:31:37.305] [FETCH]... ↓ https://www.hsn.com/... | Status: True | Time: 4.38s
+[2025-04-25 20:31:37.683] [SCRAPE].. ◆ https://www.hsn.com/... | Time: 0.377s
+[2025-04-25 20:31:37.986] [EXTRACT]. ■ Completed for https://www.hsn.com/... | Time: 0.302645000978373s
+[2025-04-25 20:31:37.987] [COMPLETE] ● https://www.hsn.com/... | Status: True | Total: 5.06s
+[2025-04-25 21:18:05.252] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 21:18:08.831] [FETCH]... ↓ https://www.hsn.com/... | Status: True | Time: 3.57s
+[2025-04-25 21:18:09.151] [SCRAPE].. ◆ https://www.hsn.com/... | Time: 0.318s
+[2025-04-25 21:18:09.413] [EXTRACT]. ■ Completed for https://www.hsn.com/... | Time: 0.26262862398289144s
+[2025-04-25 21:18:09.415] [COMPLETE] ● https://www.hsn.com/... | Status: True | Total: 4.15s
+[2025-04-25 21:20:00.578] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 21:20:03.882] [FETCH]... ↓ https://www.hsn.com/... | Status: True | Time: 3.28s
+[2025-04-25 21:20:04.173] [SCRAPE].. ◆ https://www.hsn.com/... | Time: 0.29s
+[2025-04-25 21:20:04.451] [EXTRACT]. ■ Completed for https://www.hsn.com/... | Time: 0.2775153759866953s
+[2025-04-25 21:20:04.452] [COMPLETE] ● https://www.hsn.com/... | Status: True | Total: 3.85s
+[2025-04-25 21:26:50.820] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 21:28:15.157] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 21:28:53.820] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 21:28:57.243] [FETCH]... ↓ https://www.hsn.com/shop/hosts-closet/19768... | Status: True | Time: 3.38s
+[2025-04-25 21:28:57.862] [SCRAPE].. ◆ https://www.hsn.com/shop/hosts-closet/19768... | Time: 0.618s
+[2025-04-25 21:28:57.864] [COMPLETE] ● https://www.hsn.com/shop/hosts-closet/19768... | Status: True | Total: 4.00s
+[2025-04-25 21:33:32.672] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 21:34:02.948] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 21:34:06.079] [FETCH]... ↓ https://www.hsn.com/shop/hosts-closet/19768... | Status: True | Time: 3.09s
+[2025-04-25 21:34:06.736] [SCRAPE].. ◆ https://www.hsn.com/shop/hosts-closet/19768... | Time: 0.656s
+[2025-04-25 21:34:06.737] [COMPLETE] ● https://www.hsn.com/shop/hosts-closet/19768... | Status: True | Total: 3.75s
+[2025-04-25 21:34:51.186] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 21:34:55.437] [FETCH]... ↓ https://www.hsn.com/shop/hosts-closet/19768... | Status: True | Time: 4.21s
+[2025-04-25 21:34:56.136] [SCRAPE].. ◆ https://www.hsn.com/shop/hosts-closet/19768... | Time: 0.699s
+[2025-04-25 21:34:56.137] [COMPLETE] ● https://www.hsn.com/shop/hosts-closet/19768... | Status: True | Total: 4.91s
+[2025-04-25 21:48:28.420] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 21:48:32.443] [FETCH]... ↓ https://www.hsn.com/shop/hosts-closet/19768... | Status: True | Time: 3.98s
+[2025-04-25 21:48:32.817] [SCRAPE].. ◆ https://www.hsn.com/shop/hosts-closet/19768... | Time: 0.373s
+[2025-04-25 21:48:32.818] [COMPLETE] ● https://www.hsn.com/shop/hosts-closet/19768... | Status: True | Total: 4.36s
+[2025-04-25 21:48:42.865] [FETCH]... ↓ https://www.hsn.com/shop/hosts-closet/19768... | Status: True | Time: 2.50s
+[2025-04-25 21:48:43.458] [SCRAPE].. ◆ https://www.hsn.com/shop/hosts-closet/19768... | Time: 0.592s
+[2025-04-25 21:48:43.764] [EXTRACT]. ■ Completed for https://www.hsn.com/shop/hosts-closet/19768... | Time: 0.30546111590228975s
+[2025-04-25 21:48:43.765] [COMPLETE] ● https://www.hsn.com/shop/hosts-closet/19768... | Status: True | Total: 3.40s
+[2025-04-25 21:50:14.261] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 21:50:17.591] [FETCH]... ↓ https://www.hsn.com/shop/hosts-closet/19768... | Status: True | Time: 3.29s
+[2025-04-25 21:50:18.337] [SCRAPE].. ◆ https://www.hsn.com/shop/hosts-closet/19768... | Time: 0.744s
+[2025-04-25 21:50:18.640] [EXTRACT]. ■ Completed for https://www.hsn.com/shop/hosts-closet/19768... | Time: 0.3033839159179479s
+[2025-04-25 21:50:18.642] [COMPLETE] ● https://www.hsn.com/shop/hosts-closet/19768... | Status: True | Total: 4.34s
+[2025-04-25 22:00:37.175] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 22:00:41.529] [FETCH]... ↓ https://www.hsn.com/shop/hosts-closet/19768... | Status: True | Time: 4.31s
+[2025-04-25 22:00:41.890] [SCRAPE].. ◆ https://www.hsn.com/shop/hosts-closet/19768... | Time: 0.36s
+[2025-04-25 22:00:41.891] [COMPLETE] ● https://www.hsn.com/shop/hosts-closet/19768... | Status: True | Total: 4.67s
+[2025-04-25 22:00:51.937] [FETCH]... ↓ https://www.hsn.com/shop/hosts-closet/19768... | Status: True | Time: 4.33s
+[2025-04-25 22:00:52.606] [SCRAPE].. ◆ https://www.hsn.com/shop/hosts-closet/19768... | Time: 0.667s
+[2025-04-25 22:00:53.005] [EXTRACT]. ■ Completed for https://www.hsn.com/shop/hosts-closet/19768... | Time: 0.39884221693500876s
+[2025-04-25 22:00:53.006] [COMPLETE] ● https://www.hsn.com/shop/hosts-closet/19768... | Status: True | Total: 5.40s
+[2025-04-25 22:04:08.718] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-25 22:04:13.659] [FETCH]... ↓ https://www.hsn.com/shop/hosts-closet/19768... | Status: True | Time: 4.90s
+[2025-04-25 22:04:14.061] [SCRAPE].. ◆ https://www.hsn.com/shop/hosts-closet/19768... | Time: 0.401s
+[2025-04-25 22:04:14.062] [COMPLETE] ● https://www.hsn.com/shop/hosts-closet/19768... | Status: True | Total: 5.30s
+[2025-04-25 22:04:24.047] [FETCH]... ↓ https://www.hsn.com/shop/hosts-closet/19768... | Status: True | Time: 2.95s
+[2025-04-25 22:04:24.817] [SCRAPE].. ◆ https://www.hsn.com/shop/hosts-closet/19768... | Time: 0.769s
+[2025-04-25 22:04:25.512] [EXTRACT]. ■ Completed for https://www.hsn.com/shop/hosts-closet/19768... | Time: 0.6949626270215958s
+[2025-04-25 22:04:25.514] [COMPLETE] ● https://www.hsn.com/shop/hosts-closet/19768... | Status: True | Total: 4.42s
+[2025-04-26 00:40:59.590] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-26 00:41:02.330] [FETCH]... ↓ https://qvc.com/... | Status: True | Time: 2.72s
+[2025-04-26 00:41:02.737] [SCRAPE].. ◆ https://qvc.com/... | Time: 0.406s
+[2025-04-26 00:41:03.188] [EXTRACT]. ■ Completed for https://qvc.com/... | Time: 0.45011030696332455s
+[2025-04-26 00:41:03.189] [COMPLETE] ● https://qvc.com/... | Status: True | Total: 3.58s
+[2025-04-26 00:46:11.150] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-26 00:46:13.720] [FETCH]... ↓ https://qvc.com/... | Status: True | Time: 2.55s
+[2025-04-26 00:46:14.125] [SCRAPE].. ◆ https://qvc.com/... | Time: 0.404s
+[2025-04-26 00:46:14.502] [EXTRACT]. ■ Completed for https://qvc.com/... | Time: 0.37682626803871244s
+[2025-04-26 00:46:14.503] [COMPLETE] ● https://qvc.com/... | Status: True | Total: 3.33s
+[2025-04-26 01:01:41.913] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-26 01:01:44.471] [FETCH]... ↓ https://qvc.com/... | Status: True | Time: 2.54s
+[2025-04-26 01:01:44.875] [SCRAPE].. ◆ https://qvc.com/... | Time: 0.402s
+[2025-04-26 01:01:45.242] [EXTRACT]. ■ Completed for https://qvc.com/... | Time: 0.3668429770041257s
+[2025-04-26 01:01:45.243] [COMPLETE] ● https://qvc.com/... | Status: True | Total: 3.31s
+[2025-04-26 01:20:38.611] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-26 01:20:41.964] [FETCH]... ↓ https://qvc.com/... | Status: True | Time: 3.33s
+[2025-04-26 01:20:42.372] [SCRAPE].. ◆ https://qvc.com/... | Time: 0.407s
+[2025-04-26 01:20:42.746] [EXTRACT]. ■ Completed for https://qvc.com/... | Time: 0.3727992919739336s
+[2025-04-26 01:20:42.747] [COMPLETE] ● https://qvc.com/... | Status: True | Total: 4.11s
+[2025-04-26 01:31:30.956] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-26 01:31:33.495] [FETCH]... ↓ https://qvc.com/... | Status: True | Time: 2.52s
+[2025-04-26 01:31:33.856] [SCRAPE].. ◆ https://qvc.com/... | Time: 0.36s
+[2025-04-26 01:31:34.215] [EXTRACT]. ■ Completed for https://qvc.com/... | Time: 0.35858527198433876s
+[2025-04-26 01:31:34.216] [COMPLETE] ● https://qvc.com/... | Status: True | Total: 3.24s
+[2025-04-26 01:33:31.558] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-26 01:33:34.086] [FETCH]... ↓ https://qvc.com/... | Status: True | Time: 2.51s
+[2025-04-26 01:33:34.419] [SCRAPE].. ◆ https://qvc.com/... | Time: 0.333s
+[2025-04-26 01:33:34.765] [EXTRACT]. ■ Completed for https://qvc.com/... | Time: 0.34499028604477644s
+[2025-04-26 01:33:34.766] [COMPLETE] ● https://qvc.com/... | Status: True | Total: 3.19s
+[2025-04-26 01:42:55.004] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-26 01:42:57.318] [FETCH]... ↓ https://qvc.com/... | Status: True | Time: 2.30s
+[2025-04-26 01:42:57.675] [SCRAPE].. ◆ https://qvc.com/... | Time: 0.356s
+[2025-04-26 01:42:58.034] [EXTRACT]. ■ Completed for https://qvc.com/... | Time: 0.35886494105216116s
+[2025-04-26 01:42:58.035] [COMPLETE] ● https://qvc.com/... | Status: True | Total: 3.01s
+[2025-04-26 01:43:39.436] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-26 01:43:41.792] [FETCH]... ↓ https://qvc.com/... | Status: True | Time: 2.33s
+[2025-04-26 01:43:42.146] [SCRAPE].. ◆ https://qvc.com/... | Time: 0.353s
+[2025-04-26 01:43:42.486] [EXTRACT]. ■ Completed for https://qvc.com/... | Time: 0.33976813207846135s
+[2025-04-26 01:43:42.487] [COMPLETE] ● https://qvc.com/... | Status: True | Total: 3.03s
+[2025-04-26 01:44:17.572] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-26 01:44:19.871] [FETCH]... ↓ https://qvc.com/... | Status: True | Time: 2.27s
+[2025-04-26 01:44:20.258] [SCRAPE].. ◆ https://qvc.com/... | Time: 0.387s
+[2025-04-26 01:44:20.638] [EXTRACT]. ■ Completed for https://qvc.com/... | Time: 0.37911855103448033s
+[2025-04-26 01:44:20.639] [COMPLETE] ● https://qvc.com/... | Status: True | Total: 3.05s
+[2025-04-26 01:46:23.430] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-26 01:46:25.810] [FETCH]... ↓ https://qvc.com/... | Status: True | Time: 2.35s
+[2025-04-26 01:46:26.154] [SCRAPE].. ◆ https://qvc.com/... | Time: 0.343s
+[2025-04-26 01:46:26.497] [EXTRACT]. ■ Completed for https://qvc.com/... | Time: 0.3424644040642306s
+[2025-04-26 01:46:26.498] [COMPLETE] ● https://qvc.com/... | Status: True | Total: 3.05s
+[2025-04-26 01:46:34.862] [FETCH]... ↓ https://qvc.com/#shopByCategory... | Status: True | Time: 4.01s
+[2025-04-26 01:46:35.728] [SCRAPE].. ◆ https://qvc.com/#shopByCategory... | Time: 0.865s
+[2025-04-26 01:46:35.729] [COMPLETE] ● https://qvc.com/#shopByCategory... | Status: True | Total: 4.87s
+[2025-04-26 01:46:55.441] [FETCH]... ↓ https://qvc.com/#shopByCategory... | Status: True | Time: 2.15s
+[2025-04-26 01:46:56.071] [SCRAPE].. ◆ https://qvc.com/#shopByCategory... | Time: 0.629s
+[2025-04-26 01:46:57.163] [EXTRACT]. ■ Completed for https://qvc.com/#shopByCategory... | Time: 1.0925645340466872s
+[2025-04-26 01:46:57.164] [COMPLETE] ● https://qvc.com/#shopByCategory... | Status: True | Total: 3.88s
+[2025-04-26 01:56:42.220] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-26 01:56:44.492] [FETCH]... ↓ https://qvc.com/... | Status: True | Time: 2.25s
+[2025-04-26 01:56:44.831] [SCRAPE].. ◆ https://qvc.com/... | Time: 0.338s
+[2025-04-26 01:56:45.154] [EXTRACT]. ■ Completed for https://qvc.com/... | Time: 0.3229997280286625s
+[2025-04-26 01:56:45.155] [COMPLETE] ● https://qvc.com/... | Status: True | Total: 2.92s
+[2025-04-26 01:59:55.938] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-26 01:59:58.394] [FETCH]... ↓ https://qvc.com/... | Status: True | Time: 2.43s
+[2025-04-26 01:59:58.785] [SCRAPE].. ◆ https://qvc.com/... | Time: 0.39s
+[2025-04-26 01:59:59.141] [EXTRACT]. ■ Completed for https://qvc.com/... | Time: 0.3556248960085213s
+[2025-04-26 01:59:59.142] [COMPLETE] ● https://qvc.com/... | Status: True | Total: 3.19s
+[2025-04-26 02:48:30.586] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-26 02:48:33.424] [FETCH]... ↓ https://qvc.com/... | Status: True | Time: 2.80s
+[2025-04-26 02:48:33.843] [SCRAPE].. ◆ https://qvc.com/... | Time: 0.418s
+[2025-04-26 02:48:34.223] [EXTRACT]. ■ Completed for https://qvc.com/... | Time: 0.3790458859875798s
+[2025-04-26 02:48:34.224] [COMPLETE] ● https://qvc.com/... | Status: True | Total: 3.62s
+[2025-04-26 02:50:33.910] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-26 02:50:37.177] [FETCH]... ↓ https://qvc.com/... | Status: True | Time: 3.20s
+[2025-04-26 02:50:38.086] [SCRAPE].. ◆ https://qvc.com/... | Time: 0.908s
+[2025-04-26 02:50:38.968] [EXTRACT]. ■ Completed for https://qvc.com/... | Time: 0.8815449120011181s
+[2025-04-26 02:50:38.969] [COMPLETE] ● https://qvc.com/... | Status: True | Total: 5.01s
+[2025-04-26 03:02:21.428] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-26 03:02:24.350] [FETCH]... ↓ https://qvc.com/... | Status: True | Time: 2.84s
+[2025-04-26 03:02:25.277] [SCRAPE].. ◆ https://qvc.com/... | Time: 0.926s
+[2025-04-26 03:02:26.353] [EXTRACT]. ■ Completed for https://qvc.com/... | Time: 1.0751803460298106s
+[2025-04-26 03:02:26.354] [COMPLETE] ● https://qvc.com/... | Status: True | Total: 4.87s
+[2025-04-26 03:04:58.261] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-26 03:05:01.056] [FETCH]... ↓ https://qvc.com/... | Status: True | Time: 2.77s
+[2025-04-26 03:05:01.461] [SCRAPE].. ◆ https://qvc.com/... | Time: 0.404s
+[2025-04-26 03:05:01.794] [EXTRACT]. ■ Completed for https://qvc.com/... | Time: 0.33265869494061917s
+[2025-04-26 03:05:01.795] [COMPLETE] ● https://qvc.com/... | Status: True | Total: 3.52s
+[2025-04-26 03:19:27.973] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-26 03:19:30.873] [FETCH]... ↓ https://qvc.com/... | Status: True | Time: 2.88s
+[2025-04-26 03:19:31.291] [SCRAPE].. ◆ https://qvc.com/... | Time: 0.417s
+[2025-04-26 03:19:31.662] [EXTRACT]. ■ Completed for https://qvc.com/... | Time: 0.37038650503382087s
+[2025-04-26 03:19:31.664] [COMPLETE] ● https://qvc.com/... | Status: True | Total: 3.68s
