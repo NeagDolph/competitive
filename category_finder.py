@@ -198,14 +198,16 @@ class CategoryLinkFinder:
 
         print(f'Found {len(fully_extracted)} fully extracted links')
 
+        # Ensure all links are absolute
+        normalized_links = [self._normalize_url(link, entry_url) for link in fully_extracted]
+
         # Add all category links to the DB
-        self.db.add_category_links(entry_url, fully_extracted)
-        return fully_extracted
+        self.db.add_category_links(entry_url, normalized_links)
+        return normalized_links
 
     def associate_products_with_category(self, entry_url: str, category_url: str, products: list):
         """
         Associates a set of products with a category link in the DB.
         """
         base_domain = self._get_base_domain(entry_url)
-        link = self.db.add_category_link(base_domain, category_url)
-        self.db.associate_products_with_category(link.id, products)
+        self.db.add_products(base_domain, category_url, products)
