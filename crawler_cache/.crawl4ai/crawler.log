@@ -587,3 +587,171 @@
 [2025-04-26 03:19:31.291] [SCRAPE].. ◆ https://qvc.com/... | Time: 0.417s
 [2025-04-26 03:19:31.662] [EXTRACT]. ■ Completed for https://qvc.com/... | Time: 0.37038650503382087s
 [2025-04-26 03:19:31.664] [COMPLETE] ● https://qvc.com/... | Status: True | Total: 3.68s
+[2025-04-27 23:11:01.455] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-27 23:11:04.947] [FETCH]... ↓ https://qvc.com/... | Status: True | Time: 3.46s
+[2025-04-27 23:11:05.417] [SCRAPE].. ◆ https://qvc.com/... | Time: 0.469s
+[2025-04-27 23:11:05.789] [EXTRACT]. ■ Completed for https://qvc.com/... | Time: 0.37116430699825287s
+[2025-04-27 23:11:05.790] [COMPLETE] ● https://qvc.com/... | Status: True | Total: 4.32s
+[2025-04-27 23:11:23.793] [FETCH]... ↓ https://www.qvc.com/kitchen-and-food/_/N-1ciq2/c.h... | Status: True | Time: 6.38s
+[2025-04-27 23:11:24.638] [SCRAPE].. ◆ https://www.qvc.com/kitchen-and-food/_/N-1ciq2/c.h... | Time: 0.844s
+[2025-04-27 23:11:24.639] [COMPLETE] ● https://www.qvc.com/kitchen-and-food/_/N-1ciq2/c.h... | Status: True | Total: 7.22s
+[2025-04-27 23:17:06.043] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-27 23:17:11.142] [FETCH]... ↓ https://qvc.com/... | Status: True | Time: 5.06s
+[2025-04-27 23:17:11.791] [SCRAPE].. ◆ https://qvc.com/... | Time: 0.647s
+[2025-04-27 23:17:12.260] [EXTRACT]. ■ Completed for https://qvc.com/... | Time: 0.46857976191677153s
+[2025-04-27 23:17:12.261] [COMPLETE] ● https://qvc.com/... | Status: True | Total: 6.19s
+[2025-04-27 23:17:22.465] [ERROR]... × /content/featured/deals.html... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 472 in crawl (../../.asdf/installs/python/3.11.3/lib/python3.11/site-        │
+│ packages/crawl4ai/async_crawler_strategy.py):                                                                         │
+│   Error: URL must start with 'http://', 'https://', 'file://', or 'raw:'                                              │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   467                   status_code=status_code,                                                                      │
+│   468                   screenshot=screenshot_data,                                                                   │
+│   469                   get_delayed_content=None,                                                                     │
+│   470               )                                                                                                 │
+│   471           else:                                                                                                 │
+│   472 →             raise ValueError(                                                                                 │
+│   473                   "URL must start with 'http://', 'https://', 'file://', or 'raw:'"                             │
+│   474               )                                                                                                 │
+│   475                                                                                                                 │
+│   476       async def _crawl_web(                                                                                     │
+│   477           self, url: str, config: CrawlerRunConfig                                                              │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-04-28 02:21:03.122] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 02:21:07.183] [FETCH]... ↓ https://qvc.com/... | Status: True | Time: 4.03s
+[2025-04-28 02:21:07.858] [SCRAPE].. ◆ https://qvc.com/... | Time: 0.674s
+[2025-04-28 02:21:08.372] [EXTRACT]. ■ Completed for https://qvc.com/... | Time: 0.5140831040916964s
+[2025-04-28 02:21:08.374] [COMPLETE] ● https://qvc.com/... | Status: True | Total: 5.24s
+[2025-04-28 02:57:58.250] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 02:58:01.353] [FETCH]... ↓ https://qvc.com/... | Status: True | Time: 3.08s
+[2025-04-28 02:58:01.804] [SCRAPE].. ◆ https://qvc.com/... | Time: 0.45s
+[2025-04-28 02:58:02.155] [EXTRACT]. ■ Completed for https://qvc.com/... | Time: 0.35097550705540925s
+[2025-04-28 02:58:02.156] [COMPLETE] ● https://qvc.com/... | Status: True | Total: 3.89s
+[2025-04-28 03:04:56.214] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 03:05:01.548] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 5.32s
+[2025-04-28 03:05:02.720] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 1.172s
+[2025-04-28 03:05:02.722] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 6.49s
+[2025-04-28 03:05:33.590] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 3.00s
+[2025-04-28 03:05:34.881] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 1.291s
+[2025-04-28 03:05:35.350] [EXTRACT]. ■ Completed for https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 0.46790991502348334s
+[2025-04-28 03:05:35.351] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 4.76s
+[2025-04-28 03:32:18.662] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 03:32:23.202] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 4.52s
+[2025-04-28 03:32:24.585] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 1.382s
+[2025-04-28 03:32:25.048] [EXTRACT]. ■ Completed for https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 0.4630870269611478s
+[2025-04-28 03:32:25.050] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 6.36s
+[2025-04-28 03:35:34.019] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 03:38:18.827] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 03:38:42.207] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 03:38:46.550] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 4.32s
+[2025-04-28 03:38:47.616] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 1.065s
+[2025-04-28 03:38:47.617] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 5.39s
+[2025-04-28 03:39:32.357] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 3.29s
+[2025-04-28 03:39:33.576] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 1.218s
+[2025-04-28 03:39:34.038] [EXTRACT]. ■ Completed for https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 0.46103101095650345s
+[2025-04-28 03:39:34.039] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 4.97s
+[2025-04-28 03:40:12.580] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 03:40:15.659] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 3.04s
+[2025-04-28 03:40:17.029] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 1.369s
+[2025-04-28 03:40:17.587] [EXTRACT]. ■ Completed for https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 0.5576778879621997s
+[2025-04-28 03:40:17.588] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 4.97s
+[2025-04-28 03:42:54.731] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 03:42:58.291] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 3.54s
+[2025-04-28 03:42:59.504] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 1.211s
+[2025-04-28 03:42:59.505] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 4.75s
+[2025-04-28 03:46:36.063] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 03:46:39.405] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 3.32s
+[2025-04-28 03:46:40.399] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 0.993s
+[2025-04-28 03:46:40.400] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 4.32s
+[2025-04-28 03:47:19.198] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 2.45s
+[2025-04-28 03:47:20.724] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 1.525s
+[2025-04-28 03:47:21.219] [EXTRACT]. ■ Completed for https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 0.4940764410421252s
+[2025-04-28 03:47:21.220] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 4.47s
+[2025-04-28 03:48:27.769] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 03:48:33.232] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 5.43s
+[2025-04-28 03:48:34.394] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 1.161s
+[2025-04-28 03:48:34.395] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 6.60s
+[2025-04-28 03:49:05.075] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 2.32s
+[2025-04-28 03:49:06.270] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 1.194s
+[2025-04-28 03:49:06.637] [EXTRACT]. ■ Completed for https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 0.36670658900402486s
+[2025-04-28 03:49:06.638] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 3.88s
+[2025-04-28 03:50:57.478] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 03:51:02.427] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 4.93s
+[2025-04-28 03:51:03.554] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 1.127s
+[2025-04-28 03:51:03.556] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 6.06s
+[2025-04-28 03:51:15.072] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 2.09s
+[2025-04-28 03:51:16.228] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 1.154s
+[2025-04-28 03:51:16.593] [EXTRACT]. ■ Completed for https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 0.3650128410663456s
+[2025-04-28 03:51:16.594] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 3.61s
+[2025-04-28 04:01:06.047] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 04:01:10.568] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 4.51s
+[2025-04-28 04:01:11.677] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 1.109s
+[2025-04-28 04:01:11.678] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 5.62s
+[2025-04-28 04:24:06.584] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 04:24:10.983] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 4.38s
+[2025-04-28 04:24:12.103] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 1.119s
+[2025-04-28 04:24:12.104] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 5.50s
+[2025-04-28 04:27:49.849] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 04:27:54.734] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 4.87s
+[2025-04-28 04:27:55.852] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 1.117s
+[2025-04-28 04:27:55.853] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 5.99s
+[2025-04-28 04:29:14.732] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 04:29:20.157] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 5.41s
+[2025-04-28 04:29:21.476] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 1.317s
+[2025-04-28 04:29:21.477] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 6.73s
+[2025-04-28 04:51:27.694] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 04:51:38.806] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 04:51:42.826] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 3.99s
+[2025-04-28 04:51:46.226] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 3.4s
+[2025-04-28 04:51:46.228] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 7.40s
+[2025-04-28 04:52:01.606] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 04:52:05.839] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 4.21s
+[2025-04-28 04:52:09.164] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 3.324s
+[2025-04-28 04:52:09.166] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 7.53s
+[2025-04-28 14:43:24.833] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 14:43:29.401] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 4.55s
+[2025-04-28 14:43:32.381] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 2.978s
+[2025-04-28 14:43:32.382] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 7.53s
+[2025-04-28 22:13:37.074] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 22:13:39.895] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 2.80s
+[2025-04-28 22:13:40.845] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 0.949s
+[2025-04-28 22:13:40.847] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 3.75s
+[2025-04-28 22:14:48.246] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 22:14:50.679] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 2.41s
+[2025-04-28 22:14:51.606] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 0.926s
+[2025-04-28 22:14:51.607] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 3.34s
+[2025-04-28 22:31:37.411] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 22:31:40.021] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 2.59s
+[2025-04-28 22:31:40.916] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 0.894s
+[2025-04-28 22:31:40.917] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 3.49s
+[2025-04-28 22:32:31.681] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 22:32:34.034] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 2.33s
+[2025-04-28 22:32:35.086] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 1.051s
+[2025-04-28 22:32:35.087] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 3.38s
+[2025-04-28 22:34:50.020] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 22:34:52.322] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 2.28s
+[2025-04-28 22:34:53.221] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 0.898s
+[2025-04-28 22:34:53.222] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 3.18s
+[2025-04-28 22:35:48.119] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 22:35:51.287] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 3.15s
+[2025-04-28 22:35:52.921] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 1.633s
+[2025-04-28 22:35:52.922] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 4.78s
+[2025-04-28 22:41:32.197] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 22:41:35.051] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 2.83s
+[2025-04-28 22:41:35.992] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 0.94s
+[2025-04-28 22:41:35.994] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 3.77s
+[2025-04-28 22:42:01.090] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 3.99s
+[2025-04-28 22:42:02.028] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 0.937s
+[2025-04-28 22:42:02.603] [EXTRACT]. ■ Completed for https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 0.5744792949408293s
+[2025-04-28 22:42:02.604] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 5.50s
+[2025-04-28 22:44:12.938] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-28 22:44:15.719] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 2.76s
+[2025-04-28 22:44:16.598] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 0.878s
+[2025-04-28 22:44:16.599] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 3.64s
+[2025-04-28 22:44:37.972] [FETCH]... ↓ https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Time: 4.39s
+[2025-04-28 22:44:38.953] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 0.979s
+[2025-04-28 22:44:39.526] [EXTRACT]. ■ Completed for https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 0.5722790950676426s
+[2025-04-28 22:44:39.527] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 5.95s

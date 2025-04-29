@@ -19,6 +19,8 @@ from urllib.parse import urlparse
 from crawl4ai import JsonCssExtractionStrategy
 import datetime
 
+from util.clean_html import clean_html_for_llm
+
 class ProductExtractor:
     """
     Extracts products from category pages, handling pagination up to a configurable depth.
@@ -32,8 +34,12 @@ class ProductExtractor:
                 provider="openrouter/meta-llama/llama-4-scout-17b-16e-instruct",
                 api_token=llm_api_key,
             )
-        self.gpt_4_config = LLMConfig(
-                provider="openrouter/meta-llama/llama-3.3-70b-instruct",
+        self.gpt_4_1_config = LLMConfig(
+                provider="openrouter/openai/gpt-4.1",
+                api_token=llm_api_key,
+            )
+        self.llama_3_1_405b_config = LLMConfig(
+                provider="openrouter/meta-llama/llama-3.1-405b-instruct",
                 api_token=llm_api_key,
             )
         self.db = db
@@ -96,6 +102,17 @@ class ProductExtractor:
         except Exception as e:
             print(f"[WARN] Failed to read or parse {path}: {e}")
             return set()
+        
+    @staticmethod
+    def _save_html_to_file(html: str, domain: str) -> None:
+        test_dir = Path("test_html_outputs")
+        test_dir.mkdir(exist_ok=True)
+        test_file = test_dir / f"{domain.replace('.', '_')}_cleaned.html"
+        try:
+            test_file.write_text(html)
+            print(f"[INFO] Saved cleaned HTML to {test_file}")
+        except Exception as e:
+            print(f"[WARN] Failed to save cleaned HTML to {test_file}: {e}")
 
     @staticmethod
     def _write_json_cache(path: Path, data: set) -> None:
@@ -112,7 +129,6 @@ class ProductExtractor:
         Retrieve the latest schema for the domain, or generate a new one if older than 1 hour.
         """
         base_domain = urlparse(category_url).netloc
-        now = datetime.datetime.utcnow()
         schema_record = self.db.get_latest_schema(base_domain)
         schema = None
         generated_at = None
@@ -127,57 +143,36 @@ class ProductExtractor:
             print(f"[INFO] Generating schema for {category_url}")
             # Fetch HTML for schema generation
 
-
-            # TODO: Implement manual content filter and pruning for HTML schema generation
             # -since Crawl4AI's default content filter is removing class attributes.
 
-            prune_filter = PruningContentFilter(
-                # Lower → more content retained, higher → more content pruned
-                threshold=0.3,
-                threshold_type="dynamic",
-                min_word_threshold=5
-            )
-
-
             config = CrawlerRunConfig(
-                excluded_tags=['style', 'script', 'form', 'header', 'footer', 'noscript'],
-                exclude_external_links=True,
-                process_iframes=False,
-                remove_overlay_elements=True,
-                keep_data_attributes=False,
-                cache_mode=CacheMode.BYPASS,
-                markdown_generator=DefaultMarkdownGenerator(
-                    content_filter=prune_filter
-                )
+                cache_mode=CacheMode.BYPASS
             )
+            
             result: CrawlResult = await crawler.arun(url=category_url, config=config)
             if not result.success:
                 print(f"[WARN] Failed to fetch {category_url} for schema generation: {result.error}")
                 return None
-            cleaned_html = result.markdown.fit_html
+            
+            cleaned_html = result.html
 
             if not cleaned_html:
                 print(f"[WARN] No HTML content for schema generation at {category_url}")
                 return None
             
-            # Save cleaned HTML to a test file for inspection
-            test_dir = Path("test_html_outputs")
-            test_dir.mkdir(exist_ok=True)
-            test_file = test_dir / f"{base_domain.replace('.', '_')}_cleaned.html"
-            try:
-                test_file.write_text(cleaned_html)
-                print(f"[INFO] Saved cleaned HTML to {test_file}")
-            except Exception as e:
-                print(f"[WARN] Failed to save cleaned HTML to {test_file}: {e}")
+            cleaned_html = clean_html_for_llm(cleaned_html)
 
+            # Save cleaned HTML to a test file for inspection
+            self._save_html_to_file(cleaned_html, base_domain)
 
             target_json_example = """
             [
                 {
-                        "title": "Product Title",
+                        "name": "Product Title",
                         "price": "37.49",
                         "original_price": "49.99",
                         "discount": "25% off",
+                        "sku": "1234567890",
                         "image_url": "https://example.com/image.jpg",
                         "description": "Product description",
                         "url": "https://example.com/product/123"
@@ -185,11 +180,13 @@ class ProductExtractor:
             ]
             """
         
+            # raise Exception("Stop here")
+
             schema = JsonXPathExtractionStrategy.generate_schema(
                 cleaned_html,
-                query="Extract products from the page with details such as title, price, product url, discounts, original price, image url, description, etc.", 
-                # target_json_example=target_json_example,
-                llm_config=self.gpt_4_config)
+                query="Extract products from the page with details such as name, price, product url, discounts, original price, image url, SKU/Item code, etc. Ensure field names match the target_json_example. ONLY RETURN THE RAW JSON SCHEMA, NOTHING ELSE. DO NOT WRAP WITH TILDAS (```json) OR ANYTHING ELSE.", 
+                target_json_example=target_json_example,
+                llm_config=self.gpt_4_1_config)
             print(f"[INFO] Generated schema for {category_url}: \n{schema}")
             self.db.add_schema(base_domain, schema)
         else:
@@ -230,7 +227,7 @@ class ProductExtractor:
             print(f"[WARN] Failed to fetch {category_url}: {result.error}")
         return products_llm
 
-    async def _extract_with_schema(self, crawler, category_url: str) -> List[dict]:
+    async def _extract_with_schema(self, crawler: AsyncWebCrawler, category_url: str) -> List[dict]:
         """
         Extract products using the schema-based strategy (single page, no pagination).
         """
@@ -245,6 +242,7 @@ class ProductExtractor:
             instruction="Extract the products from the HTML",
             input_format="html",
         )
+        
         result = await crawler.arun(
             url=category_url,
             config=CrawlerRunConfig(
