@@ -755,3 +755,97 @@
 [2025-04-28 22:44:38.953] [SCRAPE].. ◆ https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 0.979s
 [2025-04-28 22:44:39.526] [EXTRACT]. ■ Completed for https://www.qvc.com/fashion/_/N-lglt/c.html... | Time: 0.5722790950676426s
 [2025-04-28 22:44:39.527] [COMPLETE] ● https://www.qvc.com/fashion/_/N-lglt/c.html... | Status: True | Total: 5.95s
+[2025-04-29 04:27:43.545] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-29 04:27:48.748] [FETCH]... ↓ https://hsn.com/... | Status: True | Time: 5.17s
+[2025-04-29 04:27:49.131] [SCRAPE].. ◆ https://hsn.com/... | Time: 0.382s
+[2025-04-29 04:27:49.477] [EXTRACT]. ■ Completed for https://hsn.com/... | Time: 0.3457617969997955s
+[2025-04-29 04:27:49.478] [COMPLETE] ● https://hsn.com/... | Status: True | Total: 5.91s
+[2025-04-29 04:29:56.336] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-29 04:29:58.275] [FETCH]... ↓ https://hsn.com/shop/jewelry/... | Status: True | Time: 1.91s
+[2025-04-29 04:29:58.588] [SCRAPE].. ◆ https://hsn.com/shop/jewelry/... | Time: 0.313s
+[2025-04-29 04:29:58.589] [COMPLETE] ● https://hsn.com/shop/jewelry/... | Status: True | Total: 2.23s
+[2025-04-29 04:30:05.923] [FETCH]... ↓ https://hsn.com/shop/jewelry/... | Status: True | Time: 2.50s
+[2025-04-29 04:30:06.266] [SCRAPE].. ◆ https://hsn.com/shop/jewelry/... | Time: 0.342s
+[2025-04-29 04:30:06.372] [ERROR]... × https://hsn.com/shop/jewelry/... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 1071 in parse_selectors                                                      │
+│ (../../.asdf/installs/python/3.11.3/lib/python3.11/site-packages/soupsieve/css_parser.py):                            │
+│   Error: Expected a selector at position 0                                                                            │
+│   line 1:                                                                                                             │
+│                                                                                                                       │
+│   ^                                                                                                                   │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   1066               has_selector = True                                                                              │
+│   1067                                                                                                                │
+│   1068           if not has_selector:                                                                                 │
+│   1069               # We will always need to finish a selector when `:has()` is used as it leads with combining.     │
+│   1070               # May apply to others as well.                                                                   │
+│   1071 →             raise SelectorSyntaxError(                                                                       │
+│   1072                   f'Expected a selector at position {index}',                                                  │
+│   1073                   self.pattern,                                                                                │
+│   1074                   index                                                                                        │
+│   1075               )                                                                                                │
+│   1076                                                                                                                │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-04-29 04:32:41.143] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-29 04:32:43.341] [FETCH]... ↓ https://hsn.com/shop/jewelry/... | Status: True | Time: 2.17s
+[2025-04-29 04:32:43.672] [SCRAPE].. ◆ https://hsn.com/shop/jewelry/... | Time: 0.331s
+[2025-04-29 04:32:43.673] [COMPLETE] ● https://hsn.com/shop/jewelry/... | Status: True | Total: 2.51s
+[2025-04-29 04:32:51.239] [FETCH]... ↓ https://hsn.com/shop/jewelry/... | Status: True | Time: 3.32s
+[2025-04-29 04:32:51.601] [SCRAPE].. ◆ https://hsn.com/shop/jewelry/... | Time: 0.361s
+[2025-04-29 04:32:51.720] [ERROR]... × https://hsn.com/shop/jewelry/... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 1071 in parse_selectors                                                      │
+│ (../../.asdf/installs/python/3.11.3/lib/python3.11/site-packages/soupsieve/css_parser.py):                            │
+│   Error: Expected a selector at position 0                                                                            │
+│   line 1:                                                                                                             │
+│                                                                                                                       │
+│   ^                                                                                                                   │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   1066               has_selector = True                                                                              │
+│   1067                                                                                                                │
+│   1068           if not has_selector:                                                                                 │
+│   1069               # We will always need to finish a selector when `:has()` is used as it leads with combining.     │
+│   1070               # May apply to others as well.                                                                   │
+│   1071 →             raise SelectorSyntaxError(                                                                       │
+│   1072                   f'Expected a selector at position {index}',                                                  │
+│   1073                   self.pattern,                                                                                │
+│   1074                   index                                                                                        │
+│   1075               )                                                                                                │
+│   1076                                                                                                                │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-04-29 13:23:24.031] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-29 13:23:27.148] [FETCH]... ↓ https://hsn.com/... | Status: True | Time: 3.09s
+[2025-04-29 13:23:27.554] [SCRAPE].. ◆ https://hsn.com/... | Time: 0.405s
+[2025-04-29 13:23:27.929] [EXTRACT]. ■ Completed for https://hsn.com/... | Time: 0.3744624840001052s
+[2025-04-29 13:23:27.930] [COMPLETE] ● https://hsn.com/... | Status: True | Total: 3.88s
+[2025-04-29 13:37:30.298] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-29 13:37:48.073] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-29 13:37:52.015] [FETCH]... ↓ https://hsn.com/... | Status: True | Time: 3.91s
+[2025-04-29 13:37:52.436] [SCRAPE].. ◆ https://hsn.com/... | Time: 0.421s
+[2025-04-29 13:37:52.863] [EXTRACT]. ■ Completed for https://hsn.com/... | Time: 0.4263220150023699s
+[2025-04-29 13:37:52.864] [COMPLETE] ● https://hsn.com/... | Status: True | Total: 4.77s
+[2025-04-29 14:00:24.718] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-29 14:00:28.421] [FETCH]... ↓ https://hsn.com/... | Status: True | Time: 3.67s
+[2025-04-29 14:00:28.828] [SCRAPE].. ◆ https://hsn.com/... | Time: 0.406s
+[2025-04-29 14:00:29.197] [EXTRACT]. ■ Completed for https://hsn.com/... | Time: 0.3680879649982671s
+[2025-04-29 14:00:29.198] [COMPLETE] ● https://hsn.com/... | Status: True | Total: 4.46s
+[2025-04-29 14:03:10.855] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-29 14:03:19.312] [FETCH]... ↓ https://hsn.com/... | Status: True | Time: 8.41s
+[2025-04-29 14:03:20.265] [SCRAPE].. ◆ https://hsn.com/... | Time: 0.951s
+[2025-04-29 14:03:21.261] [EXTRACT]. ■ Completed for https://hsn.com/... | Time: 0.9958191059995443s
+[2025-04-29 14:03:21.263] [COMPLETE] ● https://hsn.com/... | Status: True | Total: 10.38s
+[2025-04-29 14:09:17.080] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-29 14:09:20.455] [FETCH]... ↓ https://hsn.com/... | Status: True | Time: 3.35s
+[2025-04-29 14:09:20.814] [SCRAPE].. ◆ https://hsn.com/... | Time: 0.358s
+[2025-04-29 14:09:21.129] [EXTRACT]. ■ Completed for https://hsn.com/... | Time: 0.31447401699915645s
+[2025-04-29 14:09:21.130] [COMPLETE] ● https://hsn.com/... | Status: True | Total: 4.03s
+[2025-04-29 14:24:38.448] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-04-29 14:24:43.799] [FETCH]... ↓ https://hsn.com/... | Status: True | Time: 5.33s
+[2025-04-29 14:24:44.604] [SCRAPE].. ◆ https://hsn.com/... | Time: 0.804s
+[2025-04-29 14:24:45.164] [EXTRACT]. ■ Completed for https://hsn.com/... | Time: 0.5602225830007228s
+[2025-04-29 14:24:45.166] [COMPLETE] ● https://hsn.com/... | Status: True | Total: 6.70s

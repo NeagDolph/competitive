@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from crawl4ai import AsyncWebCrawler
 from category_finder import CategoryLinkFinder
 from db import DB
+from util.url_helpers import get_base_domain
 
 load_dotenv()
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
@@ -18,11 +19,11 @@ def print_category_links(domain, links):
         print(f"- {link}")
 
 async def main(entry_url: str):
-    domain = urlparse(entry_url).netloc
+    domain = get_base_domain(entry_url)
     db = DB()
-    category_finder = CategoryLinkFinder(llm_api_key=OPENROUTER_API_KEY, db=db)
+    category_finder = CategoryLinkFinder(llm_api_key=OPENROUTER_API_KEY, db=db, entry_url=entry_url)
     async with AsyncWebCrawler(base_directory=str(CACHE_DIR)) as crawler:
-        category_urls = await category_finder.find_category_links(crawler, entry_url)
+        category_urls = await category_finder.find_category_links(crawler)
         if not category_urls:
             print(f"❌ No category links found for {domain}")
             return

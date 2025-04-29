@@ -6,6 +6,8 @@ from sqlalchemy.sql import func
 import json
 from datetime import datetime, timezone
 
+from util.types import Link
+
 Base = declarative_base()
 
 class Domain(Base):
@@ -18,8 +20,9 @@ class Domain(Base):
 class CategoryLink(Base):
     __tablename__ = 'category_links'
     id = Column(Integer, primary_key=True)
-    url = Column(Text, nullable=False)
+    url = Column(Text, nullable=False, unique=True)
     found_at = Column(DateTime(timezone=True), server_default=func.now())
+    link_html = Column(Text, nullable=True)
     last_crawled_at = Column(DateTime(timezone=True), nullable=True)
     domain_id = Column(Integer, ForeignKey('domains.id'), nullable=False)
     domain = relationship('Domain', back_populates='category_links')
@@ -58,7 +61,7 @@ class DB:
         Base.metadata.create_all(self.engine)
         self.Session = sessionmaker(bind=self.engine, future=True)
 
-    def get_or_create_domain(self, name: str, session: Session | None = None) -> None:
+    def get_or_create_domain(self, name: str, session: Session | None = None) -> Domain | None:
         """
         Ensure a domain exists in the database by name. No return value.
         """
@@ -72,6 +75,32 @@ class DB:
                 s.flush()
                 if managed_session:
                     s.commit()
+
+            return domain
+        except Exception:
+            if managed_session:
+                s.rollback()
+            raise
+
+    def add_category_link(self, domain_name: str, url: str, link_html: str, session: Session | None = None) -> None:
+        """
+        Add a category link for a given domain name and URL, or ensure it exists. No return value.
+        If the URL already exists for any domain, it will not be added again.
+        """
+        managed_session = session is None
+        s = session if session else self.Session()
+        try:
+            # First check if the URL exists for any domain
+            existing_link = s.query(CategoryLink).filter_by(url=url).first()
+            if existing_link:
+                return  # URL already exists, don't add it again
+            
+            domain = self.get_or_create_domain(domain_name, s)
+            link = CategoryLink(url=url, domain_id=domain.id, link_html=link_html)
+            s.add(link)
+            s.flush()
+            if managed_session:
+                s.commit()
         except Exception:
             if managed_session:
                 s.rollback()
@@ -80,28 +109,7 @@ class DB:
             if managed_session:
                 s.close()
 
-    def get_or_add_category_link(self, domain_name: str, url: str, session: Session | None = None) -> None:
-        """
-        Add a category link for a given domain name and URL, or ensure it exists. No return value.
-        """
-        managed_session = session is None
-        s = session if session else self.Session()
-        try:
-            self.get_or_create_domain(domain_name, s)
-            domain = s.query(Domain).filter_by(name=domain_name).first()
-            link = session.query(CategoryLink).filter_by(url=url, domain_id=domain.id).first()
-            if not link:
-                link = CategoryLink(url=url, domain_id=domain.id)
-                s.add(link)
-                s.flush()
-                if managed_session:
-                    s.commit()
-        except Exception:
-            if managed_session:
-                s.rollback()
-            raise
-
-    def add_category_links(self, domain_name: str, urls: list[str], session: Session | None = None) -> None:
+    def add_category_links(self, domain_name: str, urls: list[Link], session: Session | None = None) -> None:
         """
         Add multiple category links for a given domain name and list of URLs. No return value.
         """
@@ -109,7 +117,7 @@ class DB:
         s = session if session else self.Session()
         try:
             for url in urls:
-                self.get_or_add_category_link(domain_name, url, s)
+                self.add_category_link(domain_name, url["href"], url["html"], s)
             if managed_session:
                 s.commit()
         except Exception:
@@ -125,10 +133,11 @@ class DB:
         managed_session = session is None
         s = session if session else self.Session()
         try:
-            domain = s.query(Domain).filter_by(name=domain_name).first()
+            domain = self.get_or_create_domain(domain_name, s)
             if not domain:
                 return []
-            return [cl.url for cl in s.query(CategoryLink).filter_by(domain_id=domain.id).all()]
+            links = s.query(CategoryLink).filter_by(domain_id=domain.id).all()
+            return [cl.url for cl in links]
         except Exception:
             if managed_session:
                 s.rollback()
@@ -266,7 +275,7 @@ class DB:
         managed_session = session is None
         s = session if session else self.Session()
         try:
-            domain = s.query(Domain).filter_by(name=domain_name).first()
+            domain = self.get_or_create_domain(domain_name, s)
             if not domain:
                 return
             link = s.query(CategoryLink).filter_by(url=category_url, domain_id=domain.id).first()

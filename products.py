@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 from crawl4ai import AsyncWebCrawler
 from product_extractor import ProductExtractor
 from db import DB
+from util.url_helpers import get_base_domain
 
 load_dotenv()
 OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
@@ -13,12 +14,12 @@ CACHE_DIR = Path("crawler_cache")
 CACHE_DIR.mkdir(exist_ok=True)
 
 async def main(entry_url: str):
-    domain = urlparse(entry_url).netloc
+    domain = get_base_domain(entry_url)
     db = DB()
     product_extractor = ProductExtractor(llm_api_key=OPENROUTER_API_KEY, db=db)
     first_link = db.get_oldest_uncrawled_category_link(domain)
     if not first_link:
-        print(f"❌ No category links found in DB for {domain}. Run category_link_finder.py first.")
+        print(f"❌ No category links found in DB for {domain}. Run categories.py first.")
         return
     print(f"🔍 Extracting products from {first_link}")
     all_products = []

@@ -1,8 +1,9 @@
+import asyncio
 import re, json
 from urllib.parse import urlparse, urljoin
 from bs4 import BeautifulSoup
-from typing import List, Set
-
+from typing import List, NotRequired, Set
+from typing import TypedDict
 from crawl4ai import (
     AsyncWebCrawler,
     CrawlerRunConfig,
@@ -14,6 +15,8 @@ from crawl4ai import (
     LXMLWebScrapingStrategy,
 )
 from db import DB
+from util.url_helpers import get_base_domain, normalize_url, prune_invalid_links
+from util.types import Link
 
 class CategoryLinkFinder:
     """
@@ -37,7 +40,7 @@ class CategoryLinkFinder:
         re.I | re.X # Case-insensitive and verbose mode for readability
     )
 
-    def __init__(self, llm_api_key: str, db: DB):
+    def __init__(self, llm_api_key: str, db: DB, entry_url: str):
         self.css_link_strategy = JsonCssExtractionStrategy(schema={
             "name": "Links + context",
             "baseSelector": "a",
@@ -49,10 +52,17 @@ class CategoryLinkFinder:
                 {"name": "title", "type": "text", "default": "No Title"},
             ]
         })
+
+        self.entry_url = entry_url
+        self.domain = get_base_domain(entry_url)
+
         self.classifier_strategy = LLMExtractionStrategy(
             llm_config=LLMConfig(
-                provider="openrouter/meta-llama/llama-4-scout-17b-16e-instruct",
+                provider="openrouter/meta-llama/llama-3.3-70b-instruct",
                 api_token=llm_api_key,
+                frequency_penalty=0.0,
+                temprature=0.0,
+                presence_penalty=0.0,
             ),
             schema={
                 "type": "object",
@@ -66,84 +76,31 @@ class CategoryLinkFinder:
             },
             extraction_type="schema",
             instruction=(
-                "The input is a plain-text list of absolute URLs and HTML content for links on a page. "
-                "Return only those URLs that are TOP-LEVEL PRODUCT CATEGORY pages on an e-commerce site "
-                "(e.g. /mens, /electronics, /shop/jewelry, /category/samsung, /content/featured/trending-today, /v/men, etc.). Do not return links to individual products, sales promos, "
-                "customer-service pages, blogs, brand pages or external sites."
+                f'The input is a plain-text list of absolute URLs and associated HTML content for links on an e-commerce shopping page for {self.domain} '
+                "Return only URLs (and just the URLs, not the HTML content) that are TOP-LEVEL PRODUCT CATEGORIES from the existing list. "
+                "Do not return subcategories, only top-level categories."
+                "Ensure links are absolute and are taken from the existing list."
+                "Do not return links to individual products, "
+                "customer-service pages, blogs, brand pages, external sites, or any pages that are not product categories."
             ),
             input_format="text",
             apply_chunking=True,
-            chunk_size=10000,
+            chunk_size=1000
         )
         self.db = db
 
-    def _get_base_domain(self, domain: str) -> str:
-        """
-        Normalize a domain to be subdomain agnostic (treat www and non-www as the same).
-        """
-        base = urlparse(domain).netloc
-        if base.startswith("www."):
-            return base[4:]
-        return base
-    
-    def _normalize_url(self, url: str, base_url: str) -> str:
-        parsed = urlparse(url)
-        if not parsed.netloc:
-            return urljoin(base_url, url)
-        return url
-
-    def _reduce_links(self, links: list, entry_url: str) -> list:
-        """
-        Reduce links to only valid, internal, absolute links.
-        Removes:
-        - mailto: and tel: links
-        - links that are just '#' or start with '#'
-        - external links
-        Ensures all links are absolute.
-        """
-        base_domain = self._get_base_domain(entry_url)
-        reduced = []
-        seen = set()
-        for r in links:
-            href = r.get("href")
-            if not href:
-                continue
-            href = href.strip()
-            # Remove mailto: and tel:
-            if href.startswith("mailto:") or href.startswith("tel:"):
-                continue
-            # Remove links that are just '#' or start with '#'
-            if href == "#" or href.startswith("#"):
-                continue
-
-            full_url = self._normalize_url(href, entry_url)
-
-            # Remove external links
-            if self._get_base_domain(full_url) != base_domain:
-                continue
-
-            # Remove duplicates
-            if full_url in seen:
-                continue
-
-            r["href"] = full_url
-            seen.add(full_url)
-            reduced.append(r)
-        return reduced
-
-    def _clean_a_tag_html(self, html: str) -> str:
+    def _clean_a_tag_html(self, html: str, tags: List[str] = None) -> str:
         """
         Cleans an <a> tag HTML string so that its content is only its inner text (no HTML),
         and removes unnecessary attributes.
         """
-        tags_to_remove = ["rel", "target", "style", "aria-haspopup", "aria-expanded"]
         if not html:
             return html
         soup = BeautifulSoup(html, "lxml")
         a_tag = soup.find("a")
         if a_tag:
             # Remove unwanted attributes
-            for tag in tags_to_remove:
+            for tag in tags:
                 if a_tag.has_attr(tag):
                     del a_tag[tag]
             # Replace all contents of the <a> tag with its inner text only
@@ -153,9 +110,14 @@ class CategoryLinkFinder:
             return str(a_tag)
         return html
 
-    async def find_category_links(self, crawler: AsyncWebCrawler, entry_url: str) -> List[str]:
+    async def find_category_links(self, crawler: AsyncWebCrawler) -> List[str]:
         """
-        Finds category links from the entry URL using a two-stage process.
+        Finds links for product categories from the entry URL using a three step process.
+
+        Step 1: Scrape all links
+        Step 2: Filter for valid internal links
+        Step 3: LLM classification for final category link selection
+
         Args:
             crawler: An AsyncWebCrawler instance.
             entry_url: The URL to start from.
@@ -171,43 +133,50 @@ class CategoryLinkFinder:
             verbose=True,
             cache_mode=CacheMode.READ_ONLY,
         )
-        res: CrawlResult = await crawler.arun(url=entry_url, config=css_config)
-        rows = json.loads(res.extracted_content)
+        res: CrawlResult = await crawler.arun(url=self.entry_url, config=css_config)
+        rows: list[Link] = json.loads(res.extracted_content)
 
         print(f'Found {len(rows)} preliminary links')
 
         # Modify each <a> tag so that its content is only its inner text (no HTML), and remove unnecessary attributes
         for r in rows:
             html = r.get("html", "")
-            r["html"] = self._clean_a_tag_html(html)
+            r["html"] = self._clean_a_tag_html(html, ["rel", "target", "style", "aria-haspopup", "aria-expanded", "class"])
 
         # Use the new reduction method
-        reduced_links = self._reduce_links(rows, entry_url)
+        reduced_links = prune_invalid_links(rows, self.entry_url)
         print(f'Found {len(reduced_links)} reduced links to process')
 
         if not reduced_links:
             return []
         
         # LLM classification
-        prompt_text = "\n".join([f'URL: {r["href"]}\n{r["html"]}' for r in reduced_links])
-        records = self.classifier_strategy.run(url=entry_url, sections=[prompt_text])
-        fully_extracted = []
+        prompt_text = "\n".join([f'- {r["href"]} - {r["html"][:150]}' for r in reduced_links])
+        print(f'Prompt text: {prompt_text}')
+        print('[INFO] Running LLM category classification')
+        # Ensure classifier_strategy.run is called asynchronously
+        loop = asyncio.get_event_loop()
+        records = await loop.run_in_executor(
+            None, 
+            lambda: self.classifier_strategy.run(url=self.entry_url, sections=[prompt_text])
+        )
+        fully_extracted: list[str] = []
         for record in records:
             if not record.get("error"):
                 fully_extracted.extend(record.get("category_urls", []))
 
-        print(f'Found {len(fully_extracted)} fully extracted links')
+        # Match to the items in reduced_links and return those so that other keys of the link dicts are retained
+        fully_extracted_set = set(fully_extracted)
+        fully_extracted_links = [r for r in reduced_links if r["href"] in fully_extracted_set]
+
+        print(f'Found {len(fully_extracted_links)} fully extracted links')
 
         # Ensure all links are absolute
-        normalized_links = [self._normalize_url(link, entry_url) for link in fully_extracted]
+        normalized_links: list[Link] = [{
+            "href": normalize_url(link["href"], self.entry_url),
+            "html": link["html"]
+        } for link in fully_extracted_links]
 
         # Add all category links to the DB
-        self.db.add_category_links(entry_url, normalized_links)
+        self.db.add_category_links(self.domain, normalized_links)
         return normalized_links
-
-    def associate_products_with_category(self, entry_url: str, category_url: str, products: list):
-        """
-        Associates a set of products with a category link in the DB.
-        """
-        base_domain = self._get_base_domain(entry_url)
-        self.db.add_products(base_domain, category_url, products)
