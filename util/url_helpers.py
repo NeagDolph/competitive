@@ -5,7 +5,10 @@ from util.types import Link
 def get_base_domain(domain: str) -> str:
     """
     Retrieve the base domain of a URL, subdomain agnostically.
+    Handles both bare domains (e.g. 'qvc.com') and full URLs (e.g. 'https://qvc.com').
     """
+    if not domain.startswith(('http://', 'https://')):
+        domain = 'https://' + domain
     base = urlparse(domain).netloc
     if base.startswith("www."):
         return base[4:]

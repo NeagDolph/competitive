@@ -46,3 +46,5 @@ build/
 .env.development.local
 .env.test.local
 .env.production.local
+model.onnx
+test_html_outputs/

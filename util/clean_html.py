@@ -54,10 +54,10 @@ def clean_html_for_llm(html: str) -> str:
     """
 
     prune_filter = UniversalProductFilter(
-        # Lower → more content retained, higher → more content pruned
-        keep_top_n=200,
-        retention_ratio=0.2,
-        user_query="$ USD CAD AUD EUR GBP JPY INR price cost sale buy add to cart checkout order product item size color"
+        keep_top_n=20,
+        similarity_threshold=0.95,
+        min_words=2,
+        # user_query="$ USD CAD AUD EUR GBP JPY INR price pricing cost sale buy add to cart checkout order product item size color"
     )
 
     pruned_html = prune_filter.filter_content(html)

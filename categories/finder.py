@@ -58,7 +58,7 @@ class CategoryLinkFinder:
 
         self.classifier_strategy = LLMExtractionStrategy(
             llm_config=LLMConfig(
-                provider="openrouter/meta-llama/llama-3.3-70b-instruct",
+                provider="openrouter/deepseek/deepseek-chat-v3-0324",
                 api_token=llm_api_key,
                 frequency_penalty=0.0,
                 temprature=0.0,
@@ -76,12 +76,11 @@ class CategoryLinkFinder:
             },
             extraction_type="schema",
             instruction=(
-                f'The input is a plain-text list of absolute URLs and associated HTML content for links on an e-commerce shopping page for {self.domain} '
-                "Return only URLs (and just the URLs, not the HTML content) that are TOP-LEVEL PRODUCT CATEGORIES from the existing list. "
-                "Do not return subcategories, only top-level categories."
-                "Ensure links are absolute and are taken from the existing list."
-                "Do not return links to individual products, "
-                "customer-service pages, blogs, brand pages, external sites, or any pages that are not product categories."
+                f"From the provided list of URLs and their HTML context from the e-commerce site {self.domain}, "
+                "extract all URLs that lead to product category or sub-category pages. "
+                "These pages typically list multiple products. "
+                "Return only the absolute URLs from the list. "
+                "Exclude links to specific products, account pages, customer service, or informational pages."
             ),
             input_format="text",
             apply_chunking=True,
@@ -143,40 +142,41 @@ class CategoryLinkFinder:
             html = r.get("html", "")
             r["html"] = self._clean_a_tag_html(html, ["rel", "target", "style", "aria-haspopup", "aria-expanded", "class"])
 
-        # Use the new reduction method
+        # Use the new reduction method to filter for internal links only
         reduced_links = prune_invalid_links(rows, self.entry_url)
         print(f'Found {len(reduced_links)} reduced links to process')
 
         if not reduced_links:
             return []
         
-        # LLM classification
-        prompt_text = "\n".join([f'- {r["href"]} - {r["html"][:150]}' for r in reduced_links])
-        print(f'Prompt text: {prompt_text}')
-        print('[INFO] Running LLM category classification')
-        # Ensure classifier_strategy.run is called asynchronously
-        loop = asyncio.get_event_loop()
-        records = await loop.run_in_executor(
-            None, 
-            lambda: self.classifier_strategy.run(url=self.entry_url, sections=[prompt_text])
-        )
-        fully_extracted: list[str] = []
-        for record in records:
-            if not record.get("error"):
-                fully_extracted.extend(record.get("category_urls", []))
+        # # LLM classification
+        # prompt_text = "\n".join([f'- {r["href"]} - {r["html"][:150]}' for r in reduced_links])
+        # print(f'Prompt text: {prompt_text}')
+        # print('[INFO] Running LLM category classification')
+        # # Ensure classifier_strategy.run is called asynchronously
+        # loop = asyncio.get_event_loop()
+        # records = await loop.run_in_executor(
+        #     None, 
+        #     lambda: self.classifier_strategy.run(url=self.entry_url, sections=[prompt_text])
+        # )
+        # print(f'Records: {records}')
+        # fully_extracted: list[str] = []
+        # for record in records:
+        #     if not record.get("error"):
+        #         fully_extracted.extend(record.get("category_urls", []))
 
-        # Match to the items in reduced_links and return those so that other keys of the link dicts are retained
-        fully_extracted_set = set(fully_extracted)
-        fully_extracted_links = [r for r in reduced_links if r["href"] in fully_extracted_set]
+        # # Match to the items in reduced_links and return those so that other keys of the link dicts are retained
+        # fully_extracted_set = set(fully_extracted)
+        # fully_extracted_links = [r for r in reduced_links if r["href"] in fully_extracted_set]
 
-        print(f'Found {len(fully_extracted_links)} fully extracted links')
+        # print(f'Found {len(fully_extracted_links)} fully extracted links')
 
         # Ensure all links are absolute
         normalized_links: list[Link] = [{
             "href": normalize_url(link["href"], self.entry_url),
             "html": link["html"]
-        } for link in fully_extracted_links]
+        } for link in reduced_links]
 
         # Add all category links to the DB
         self.db.add_category_links(self.domain, normalized_links)
-        return normalized_links
+        return normalized_links 

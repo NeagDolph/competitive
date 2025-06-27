@@ -8,7 +8,7 @@ from bs4 import BeautifulSoup, Tag, Comment, NavigableString
 class EcommerceContentFilter(ABC):
     """
     Generic product / price extractor that returns *deduplicated* HTML fragments
-    suitable for an LLM.  It is self-contained – no   external BM25 import needed.
+    suitable for an LLM.  It is self-contained – no external BM25 import needed.
     """
 
     # -------------------------------------------------------- REGEX CONSTANTS

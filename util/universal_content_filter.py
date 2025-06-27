@@ -1,270 +1,254 @@
 import re
-from collections import deque
+import torch
 from dataclasses import dataclass
-from typing import List, Tuple, Set, Optional
-import copy
+from typing import List
+import numpy as np
+from bs4 import BeautifulSoup, Tag
+from pathlib import Path
 
+# --- Model Loading ---
+# Load models once when the module is imported. This is efficient for scripts
+# that instantiate the filter multiple times.
+try:
+    import spacy
+    from optimum.onnxruntime import ORTModelForFeatureExtraction
+    from transformers import AutoTokenizer
+    from sklearn.metrics.pairwise import cosine_similarity
 
-from bs4 import BeautifulSoup, Tag, Comment, NavigableString
+    print("Loading NLP models (this may take a moment on first run)...")
+    _nlp_model = spacy.load('en_core_web_sm')
+    
+    # --- Optimized ONNX Model Loading ---
+    # This block checks for a local ONNX version of the model. If not found,
+    # it converts the model and caches it for future, faster startups.
+    _st_model_id = 'sentence-transformers/all-MiniLM-L6-v2'
+    _onnx_path = Path("onnx_models") / _st_model_id.split('/')[-1]
 
+    if _onnx_path.exists():
+        print(f"-> Loading cached ONNX model from: {_onnx_path}")
+        _embedding_model = ORTModelForFeatureExtraction.from_pretrained(_onnx_path, provider="CPUExecutionProvider")
+        _tokenizer = AutoTokenizer.from_pretrained(_onnx_path)
+    else:
+        print(f"-> ONNX model not found locally. Converting and caching '{_st_model_id}'...")
+        _embedding_model = ORTModelForFeatureExtraction.from_pretrained(_st_model_id, export=True, provider="CPUExecutionProvider")
+        _tokenizer = AutoTokenizer.from_pretrained(_st_model_id)
+        
+        # Save the converted ONNX model for the next run
+        print(f"-> Saving ONNX model to: {_onnx_path}")
+        _onnx_path.mkdir(parents=True, exist_ok=True)
+        _embedding_model.save_pretrained(_onnx_path)
+        _tokenizer.save_pretrained(_onnx_path)
+        print("-> Model caching complete.")
+    # --- End Optimized ONNX Model Loading ---
+
+    MODELS_AVAILABLE = True
+    print("NLP models loaded successfully.")
+except (ImportError, OSError) as e:
+    _nlp_model, _embedding_model, _tokenizer = None, None, None
+    MODELS_AVAILABLE = False
+    print(f"Warning: NLP models not available. Please run 'pip install -r requirements_nlp.txt'. Error: {e}")
+# --- End Model Loading ---
 
 @dataclass
 class _ScoredNode:
-    order: int
+    """A simple data class to hold a DOM node and its calculated score."""
     score: float
     node: Tag
 
-
 class UniversalProductFilter:
     """
-    Prunes raw e-commerce HTML down to *deduplicated* “price-card” fragments
-    that an LLM can safely chunk and embed.  All heuristics are retailer-agnostic
-    and tunable via the constructor.
+    Universal e-commerce product filter that extracts individual product elements
+    using a simplified and robust NLP-based approach.
     """
+    
+    # Regex for pre-filtering navigation and junk sections to avoid expensive NLP processing
+    NAV_PATTERNS = [
+        r"(?:nav|navigation|menu|header|footer|sidebar|breadcrumb)",
+        r"(?:filter|sort|pagination|paging)", r"(?:newsletter|signup|login)",
+        r"(?:social|share|follow)", r"(?:banner|ad|promo|marketing)",
+        r"(?:review|rating|testimonial)(?:s|_list|_section)",
+        r"(?:recommended|suggestion|upsell|cross[_-]?sell)",
+        r"(?:category|department)[_-]?(?:nav|menu|list)",
+    ]
+    NEG_CLASS_RX = re.compile("|".join(NAV_PATTERNS), re.I)
+    
+    JUNK_TEXT_PATTERNS = [
+        r"\b(?:home|about|contact|help|support|faq|terms|privacy|policy)\b",
+        r"\b(?:sign\s+up|log\s+in|register|account|profile|settings)\b",
+        r"\b(?:free\s+shipping|return\s+policy|customer\s+service)\b",
+    ]
+    NEG_TEXT_RX = re.compile("|".join(JUNK_TEXT_PATTERNS), re.I)
 
-    # ------------------------------------------------------------------ regexes
-    PRICE_RX        = re.compile(
-        r"""(?<!\w)(?:[$€£¥₹]|USD|CAD|AUD|EUR|GBP|JPY|INR)\s*
-            \d{1,3}(?:[,\s]\d{3})*(?:[.,]\d{2})?(?!\w)""",
-        re.I | re.X,
-    )
-    PRICE_ATTR_RX   = re.compile(r"(price|amount|cost|value)", re.I)
-    NEG_CLASS_RX    = re.compile(
-        r"(?:nav|header|footer|aside|sidebar|banner|ads?|coupon|newsletter|"
-        r"promo|upsell|social|share|breadcrumb|filter|facet|sort)",
-        re.I,
-    )
-    NEG_TEXT_RX     = re.compile(
-        r"\b(?:sale|discount|percent off|save \d|free shipping)\b", re.I
-    )
-
-    # Default tag weights – higher ⇒ potentially more information–dense
-    TAG_W = {
-        "h1": 1.4, "h2": 1.3, "h3": 1.2,
-        "p":  1.1, "li": 1.0,
-        "section": 1.3, "article": 1.3,
-        "div": 0.6, "span": 0.4,
-    }
-
-    STRIP_TAGS = {"script", "style", "svg", "iframe", "form", "noscript"}
-
-    # ----------------------------------------------------------------- ctor
     def __init__(
         self,
         *,
-        keep_top_n: int = 40,
-        retention_ratio: float = 0.5,
-        min_words: int = 2,
-        max_chars: int = 800,
-        user_query: str | None = None,
+        keep_top_n: int = 20,
+        min_chars: int = 75,
+        max_chars: int = 3500,
+        min_words: int = 5,
+        similarity_threshold: float = 0.90, # Increased threshold for stricter deduplication
         verbose: bool = False,
     ):
-        """
-        keep_top_n      : hard ceiling on number of fragments returned
-        retention_ratio : fraction of *sorted* candidates to preserve
-                          (ignored if keep_top_n is hit first)
-        min_words       : reject nodes with fewer words unless they look like a price
-        max_chars       : trim candidate cards to this length (↑ = more context)
-        user_query      : optional search-query similarity boost
-        """
+        if not MODELS_AVAILABLE:
+            raise RuntimeError("NLP models are not available. Please install dependencies from requirements_nlp.txt")
+            
         self.keep_top_n = keep_top_n
-        self.retention_ratio = max(0.0, min(retention_ratio, 1.0))
-        self.min_words = min_words
+        self.min_chars = min_chars
         self.max_chars = max_chars
-        self.user_query = (user_query or "").lower()
+        self.min_words = min_words
+        self.similarity_threshold = similarity_threshold
         self.verbose = verbose
+        
+        self.nlp = _nlp_model
+        self.embedder = _embedding_model
+        self.tokenizer = _tokenizer
 
-        #    W_PRICE | W_QUERY | W_DENS | W_TAG
-        self.W = (2.6, 1.0, 0.6, 0.3)
-
-    # ============================================================  public
     def filter_content(self, html: str) -> List[str]:
-        """Return a list of HTML snippets suitable for an LLM vectoriser."""
+        """The main function to extract product snippets from HTML."""
         if not html:
             return []
 
         soup = self._make_soup(html)
+        
+        # 1. Find and score all potential product candidates using NLP
+        candidates = self._find_and_score_candidates(soup)
+        if not candidates:
+            if self.verbose: print("[UniversalProductFilter] No suitable candidates found.")
+            return []
+            
+        # 2. Deduplicate candidates to get a diverse set of products
+        unique_candidates = self._deduplicate_candidates(candidates)
+        
+        # 3. Sort by score and return the top N results
+        top_candidates = sorted(unique_candidates, key=lambda c: c.score, reverse=True)[:self.keep_top_n]
 
-        # -- A/B) strip obvious junk + wrapper elements in one DFS pass
-        for node in list(soup.body.descendants):
-            if node is None:
-                continue
-            # if isinstance(node, Comment):
-            #     node.extract()
-            #     continue
-            if node.name in self.STRIP_TAGS:
-                node.decompose()
-                continue
-            if isinstance(node, Tag) and self._is_junk_wrapper(node):
-                node.decompose()
+        if self.verbose:
+            print(f"Found {len(candidates)} potential candidates.")
+            print(f"After deduplication: {len(unique_candidates)} unique candidates.")
+            print(f"Returning top {len(top_candidates)} results.")
+            
+        return [str(c.node) for c in top_candidates]
 
-        # -- C) candidate discovery + scoring
-        candidates: list[_ScoredNode] = []
-        order = 0
-        for tag in soup.body.descendants:
-            if not isinstance(tag, Tag):
+    def _find_and_score_candidates(self, soup: BeautifulSoup) -> List[_ScoredNode]:
+        """Iterate through all elements, scoring them based on NLP and heuristics."""
+        candidates = []
+        for tag in soup.find_all(True):
+            if not isinstance(tag, Tag) or not tag.name:
                 continue
-            if tag.name not in self.TAG_W:
+            
+            text = tag.get_text(" ", strip=True)
+            
+            # --- Fast pre-filtering based on simple heuristics ---
+            if not (self.min_chars < len(text) < self.max_chars):
                 continue
+            if len(text.split()) < self.min_words:
+                continue
+            if self._is_navigation_element(tag, text):
+                continue
+                
+            # --- Score the element using NLP if it passes pre-filters ---
+            score = self._score_element_with_nlp(tag, text)
+            if score > 0:
+                candidates.append(_ScoredNode(score, tag))
+                
+        return candidates
 
-            txt = tag.get_text(" ", strip=True)
-            if not txt:
-                continue
-            # allow short nodes *only* if they clearly look like a price
-            if not self._looks_like_price(txt, tag) and len(txt.split()) < self.min_words:
-                continue
+    def _score_element_with_nlp(self, tag: Tag, text: str) -> float:
+        """Scores an element based on NLP analysis of its text and structure."""
+        doc = self.nlp(text[:self.nlp.max_length])
+        score = 0.0
 
-            candidates.append(
-                _ScoredNode(order, self._score(tag, txt), tag)
-            )
-            order += 1
+        # Score based on named entities found by spaCy
+        entity_scores = {"MONEY": 2.5, "PRODUCT": 2.0, "ORG": 0.5}
+        for ent in doc.ents:
+            score += entity_scores.get(ent.label_, 0)
 
+        # Score based on product-related keywords
+        product_keywords = ["sale", "discount", "offer", "review", "rating", "brand", "sku", "model"]
+        score += sum(0.25 for keyword in product_keywords if keyword in text.lower())
+
+        # Structural and density bonuses
+        if tag.find('img'): score += 0.5
+        if tag.find(['button', 'a'], text=re.compile(r"add|buy|cart", re.I)): score += 1.0
+        score += (len(text) / (len(str(tag)) + 1e-6))  # Text-to-HTML ratio to favor content-rich nodes
+
+        return score
+
+    def _deduplicate_candidates(self, candidates: List[_ScoredNode]) -> List[_ScoredNode]:
+        """Deduplicates candidates using semantic similarity and DOM structure."""
         if not candidates:
             return []
 
-        # Optional retention-ratio pre-prune (cheap way to drop tail)
-        candidates.sort(key=lambda x: x.score, reverse=True)
-        keep_count = min(
-            self.keep_top_n,
-            max(1, int(len(candidates) * self.retention_ratio)),
-        )
-        candidates = candidates[:keep_count]
+        # Sort by score descending to prioritize better candidates
+        candidates = sorted(candidates, key=lambda c: c.score, reverse=True)
 
-        # ---------------------------------------------------- D/E/F) compact, dedupe
-        accepted: list[Tag] = []
-        covered: list[Tuple[int, int]] = []       # (start_line, end_line)
-        for cand in sorted(candidates, key=lambda c: (-c.score, c.order)):
-            if len(accepted) >= self.keep_top_n:
-                break
-            card = self._compact_to_card(cand.node)
-            if self._is_subrange(card, covered):
+        # 1. Remove candidates that are nested inside other higher-scoring candidates
+        candidates = self._remove_nested_candidates(candidates)
+
+        # 2. Use semantic similarity to remove near-duplicate products
+        descriptions = [self._extract_product_description(c.node) for c in candidates]
+        
+        # --- ONNX-based Semantic Embedding ---
+        inputs = self.tokenizer(descriptions, padding=True, truncation=True, max_length=128, return_tensors="pt")
+        with torch.no_grad():
+            outputs = self.embedder(**inputs)
+        embeddings = self._mean_pooling(outputs, inputs['attention_mask'])
+        embeddings = embeddings.cpu().numpy()
+        # --- End ONNX-based Semantic Embedding ---
+
+        unique_candidates: List[_ScoredNode] = []
+        indices_to_discard = set()
+
+        for i in range(len(candidates)):
+            if i in indices_to_discard:
                 continue
-            accepted.append(self._wrap_with_ancestry(card))
-            covered.append(self._node_range(card))
+            
+            unique_candidates.append(candidates[i])
+            
+            # Find and discard candidates that are too similar to the current one
+            for j in range(i + 1, len(candidates)):
+                if j in indices_to_discard:
+                    continue
+                
+                similarity = cosine_similarity([embeddings[i]], [embeddings[j]])[0][0]
+                if similarity > self.similarity_threshold:
+                    indices_to_discard.add(j)
+                    
+        return unique_candidates
 
-        unique_html: Set[str] = set()
-        result: List[str] = []
-        for n in sorted(accepted, key=lambda n: n.sourceline or 0):
-            h = str(n)
-            if h not in unique_html:
-                unique_html.add(h)
-                result.append(h)
+    def _mean_pooling(self, model_output, attention_mask):
+        """Helper function for sentence-transformer models."""
+        token_embeddings = model_output[0]
+        input_mask_expanded = attention_mask.unsqueeze(-1).expand(token_embeddings.size()).float()
+        return torch.sum(token_embeddings * input_mask_expanded, 1) / torch.clamp(input_mask_expanded.sum(1), min=1e-9)
 
-        if self.verbose:
-            print(f"[UniversalProductFilter] returned {len(result)} fragments")
-        return result
-
-    # =====================================================  internal helpers
-
-    def _wrap_with_ancestry(self, node: Tag) -> Tag:
-        """
-        Clone `node` and every ancestor up to <body>, but
-        *only* keep the single child that leads to `node` on each level.
-        This preserves structural context without re-introducing siblings.
-        """
-        soup = BeautifulSoup("", "lxml")
-        # shallow-copy the card (no parents) first
-        clone = copy.copy(node)
-        clone.clear()
-        # deep-copy its *contents* to retain children exactly as they are
-        for child in node.contents:
-            clone.append(copy.copy(child))
-
-        parent = node.parent
-        child_clone = clone
-        # walk upwards until <body>, re-creating the chain
-        while parent and parent.name != "body":
-            parent_clone = copy.copy(parent)
-            parent_clone.clear()
-            parent_clone.append(child_clone)
-            child_clone = parent_clone
-            parent = parent.parent
-
-        return child_clone
-
-    # ---------- price & promo checks
-    def _looks_like_price(self, text: str, node: Tag) -> bool:
-        if self.PRICE_RX.search(text):
+    def _remove_nested_candidates(self, candidates: List[_ScoredNode]) -> List[_ScoredNode]:
+        """Removes candidates that are children of other candidates in the list."""
+        nodes = [c.node for c in candidates]
+        non_nested_candidates = []
+        for i, c in enumerate(candidates):
+            is_child_of_another_candidate = any(c.node in other_node.parents for j, other_node in enumerate(nodes) if i != j)
+            if not is_child_of_another_candidate:
+                non_nested_candidates.append(c)
+        return non_nested_candidates
+        
+    def _is_navigation_element(self, tag: Tag, text: str) -> bool:
+        """Checks if an element is likely part of navigation, a header, or a footer."""
+        if tag.name in ["nav", "header", "footer", "aside"]:
             return True
-        for attr in ("class", "id", "itemprop", "data-price", "aria-label"):
-            v = node.get(attr)
-            if not v:
-                continue
-            if isinstance(v, list):
-                v = " ".join(v)
-            if self.PRICE_ATTR_RX.search(str(v)):
-                return True
+        attr_text = " ".join([tag.get("id", ""), " ".join(tag.get("class", [])), tag.get("role", "")]).lower()
+        if self.NEG_CLASS_RX.search(attr_text):
+            return True
+        if self.NEG_TEXT_RX.search(text[:200]): # Check only the start of the text
+            return True
         return False
+        
+    def _extract_product_description(self, tag: Tag) -> str:
+        """Extracts a concise description from a node for semantic comparison."""
+        return ' '.join(tag.get_text(" ", strip=True).split()[:30])
 
-    def _is_junk_wrapper(self, node: Tag) -> bool:
-        # tag name already filtered in STRIP_TAGS, here we look at class/id/text
-        attrs = ""
-        if node.attrs is not None:
-            attrs = " ".join(
-                filter(None, [" ".join(node.get("class", [])), node.get("id", "")])
-            )
-        if self.NEG_CLASS_RX.search(attrs):
-            return True
-        head = node.get_text(" ", strip=True)[:120]
-        return bool(self.NEG_TEXT_RX.search(head))
-
-    # ---------- scoring
-    def _score(self, node: Tag, text: str) -> float:
-        has_price = self._looks_like_price(text, node)
-        html_len  = len(node.encode_contents())
-        dens      = len(text) / html_len if html_len else 0.0
-        q_sim     = self._query_similarity(text)
-        tag_w     = self.TAG_W.get(node.name, 0.5)
-        w_price, w_query, w_dens, w_tag = self.W
-
-        return (
-            w_price * int(has_price)
-            + w_query * q_sim
-            + w_dens  * dens
-            + w_tag   * tag_w
-        )
-
-    def _query_similarity(self, text: str) -> float:
-        if not self.user_query:
-            return 0.0
-        q_tokens = set(self.user_query.split())
-        t_tokens = set(text.lower().split())
-        return len(q_tokens & t_tokens) / len(q_tokens) if q_tokens else 0.0
-
-    # ---------- compaction / deduplication
-    def _compact_to_card(self, node: Tag) -> Tag:
-        current = node
-        while current.parent and current.parent.name != "body":
-            par = current.parent
-            if len(par.get_text(" ", strip=True)) > self.max_chars:
-                break
-            # Stop climbing if the *parent* no longer contains the price token
-            if not self._looks_like_price(par.get_text(" ", strip=True), par):
-                break
-            current = par
-
-        # Deep-clean promo descendants inside the kept block
-        for d in list(current.descendants):
-            if isinstance(d, Tag) and self._is_junk_wrapper(d):
-                d.decompose()
-
-        return current
-
-    def _is_subrange(self, node: Tag, ranges: List[Tuple[int, int]]) -> bool:
-        n_start, n_end = self._node_range(node)
-        return any(s <= n_start and n_end <= e for s, e in ranges)
-
-    @staticmethod
-    def _node_range(node: Tag) -> Tuple[int, int]:
-        start = getattr(node, "sourceline", 0) or 0
-        txt_lines = len(str(node).splitlines())
-        return start, start + txt_lines
-
-    # ---------- soup
     @staticmethod
     def _make_soup(html: str) -> BeautifulSoup:
+        """Creates a BeautifulSoup object, ensuring it has a body tag."""
         soup = BeautifulSoup(html, "lxml")
-        if not soup.body:
-            # fragment – wrap in <body> so .body.descendants works
-            soup = BeautifulSoup(f"<body>{html}</body>", "lxml")
-        return soup
+        return soup if soup.body else BeautifulSoup(f"<body>{html}</body>", "lxml")

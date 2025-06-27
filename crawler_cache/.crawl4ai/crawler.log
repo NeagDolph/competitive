@@ -849,3 +849,419 @@
 [2025-04-29 14:24:44.604] [SCRAPE].. ◆ https://hsn.com/... | Time: 0.804s
 [2025-04-29 14:24:45.164] [EXTRACT]. ■ Completed for https://hsn.com/... | Time: 0.5602225830007228s
 [2025-04-29 14:24:45.166] [COMPLETE] ● https://hsn.com/... | Status: True | Total: 6.70s
+[2025-05-26 20:32:44.596] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-05-26 20:32:44.615] [ERROR]... × qvc.com... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 472 in crawl (../../.asdf/installs/python/3.11.3/lib/python3.11/site-        │
+│ packages/crawl4ai/async_crawler_strategy.py):                                                                         │
+│   Error: URL must start with 'http://', 'https://', 'file://', or 'raw:'                                              │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   467                   status_code=status_code,                                                                      │
+│   468                   screenshot=screenshot_data,                                                                   │
+│   469                   get_delayed_content=None,                                                                     │
+│   470               )                                                                                                 │
+│   471           else:                                                                                                 │
+│   472 →             raise ValueError(                                                                                 │
+│   473                   "URL must start with 'http://', 'https://', 'file://', or 'raw:'"                             │
+│   474               )                                                                                                 │
+│   475                                                                                                                 │
+│   476       async def _crawl_web(                                                                                     │
+│   477           self, url: str, config: CrawlerRunConfig                                                              │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-05-26 20:36:04.558] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-05-26 20:36:04.581] [ERROR]... × qvc.com... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 472 in crawl (../../.asdf/installs/python/3.11.3/lib/python3.11/site-        │
+│ packages/crawl4ai/async_crawler_strategy.py):                                                                         │
+│   Error: URL must start with 'http://', 'https://', 'file://', or 'raw:'                                              │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   467                   status_code=status_code,                                                                      │
+│   468                   screenshot=screenshot_data,                                                                   │
+│   469                   get_delayed_content=None,                                                                     │
+│   470               )                                                                                                 │
+│   471           else:                                                                                                 │
+│   472 →             raise ValueError(                                                                                 │
+│   473                   "URL must start with 'http://', 'https://', 'file://', or 'raw:'"                             │
+│   474               )                                                                                                 │
+│   475                                                                                                                 │
+│   476       async def _crawl_web(                                                                                     │
+│   477           self, url: str, config: CrawlerRunConfig                                                              │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-05-26 20:41:57.889] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-05-26 20:41:57.968] [ERROR]... × https:///... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 528 in wrap_api_call                                                         │
+│ (../../.asdf/installs/python/3.11.3/lib/python3.11/site-packages/playwright/_impl/_connection.py):                    │
+│   Error: BrowserContext.add_cookies: Invalid URL                                                                      │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   523           parsed_st = _extract_stack_trace_information_from_stack(st, is_internal)                              │
+│   524           self._api_zone.set(parsed_st)                                                                         │
+│   525           try:                                                                                                  │
+│   526               return await cb()                                                                                 │
+│   527           except Exception as error:                                                                            │
+│   528 →             raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None                          │
+│   529           finally:                                                                                              │
+│   530               self._api_zone.set(None)                                                                          │
+│   531                                                                                                                 │
+│   532       def wrap_api_call_sync(                                                                                   │
+│   533           self, cb: Callable[[], Any], is_internal: bool = False                                                │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-05-26 21:24:43.267] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-05-26 21:24:46.169] [FETCH]... ↓ https://qvc.com/... | Status: True | Time: 2.88s
+[2025-05-26 21:24:46.517] [SCRAPE].. ◆ https://qvc.com/... | Time: 0.348s
+[2025-05-26 21:24:46.944] [EXTRACT]. ■ Completed for https://qvc.com/... | Time: 0.42681092803832144s
+[2025-05-26 21:24:46.945] [COMPLETE] ● https://qvc.com/... | Status: True | Total: 3.66s
+[2025-06-16 18:40:42.533] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-16 18:40:45.886] [FETCH]... ↓ https://hsn.com/... | Status: True | Time: 3.32s
+[2025-06-16 18:40:46.254] [SCRAPE].. ◆ https://hsn.com/... | Time: 0.367s
+[2025-06-16 18:40:46.582] [EXTRACT]. ■ Completed for https://hsn.com/... | Time: 0.32838173100026324s
+[2025-06-16 18:40:46.583] [COMPLETE] ● https://hsn.com/... | Status: True | Total: 4.03s
+[2025-06-16 19:04:54.176] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-16 19:04:58.917] [FETCH]... ↓ https://hsn.com/... | Status: True | Time: 4.70s
+[2025-06-16 19:04:59.452] [SCRAPE].. ◆ https://hsn.com/... | Time: 0.533s
+[2025-06-16 19:05:00.118] [EXTRACT]. ■ Completed for https://hsn.com/... | Time: 0.6653942849952728s
+[2025-06-16 19:05:00.120] [COMPLETE] ● https://hsn.com/... | Status: True | Total: 5.92s
+[2025-06-16 19:09:33.545] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-16 19:09:38.832] [FETCH]... ↓ https://hsn.com/... | Status: True | Time: 5.16s
+[2025-06-16 19:09:39.199] [SCRAPE].. ◆ https://hsn.com/... | Time: 0.367s
+[2025-06-16 19:09:39.590] [EXTRACT]. ■ Completed for https://hsn.com/... | Time: 0.38988341396907344s
+[2025-06-16 19:09:39.591] [COMPLETE] ● https://hsn.com/... | Status: True | Total: 5.96s
+[2025-06-16 19:09:57.037] [FETCH]... ↓ https://hsn.com/shop/fashion/fa... | Status: True | Time: 3.70s
+[2025-06-16 19:09:58.033] [SCRAPE].. ◆ https://hsn.com/shop/fashion/fa... | Time: 0.995s
+[2025-06-16 19:09:58.035] [COMPLETE] ● https://hsn.com/shop/fashion/fa... | Status: True | Total: 4.70s
+[2025-06-16 19:10:05.918] [FETCH]... ↓ https://hsn.com/shop/fashion/fa... | Status: True | Time: 5.14s
+[2025-06-16 19:10:07.054] [SCRAPE].. ◆ https://hsn.com/shop/fashion/fa... | Time: 1.135s
+[2025-06-16 19:10:07.519] [ERROR]... × https://hsn.com/shop/fashion/fa... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 1071 in parse_selectors                                                      │
+│ (../../.asdf/installs/python/3.11.3/lib/python3.11/site-packages/soupsieve/css_parser.py):                            │
+│   Error: Expected a selector at position 0                                                                            │
+│   line 1:                                                                                                             │
+│                                                                                                                       │
+│   ^                                                                                                                   │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   1066               has_selector = True                                                                              │
+│   1067                                                                                                                │
+│   1068           if not has_selector:                                                                                 │
+│   1069               # We will always need to finish a selector when `:has()` is used as it leads with combining.     │
+│   1070               # May apply to others as well.                                                                   │
+│   1071 →             raise SelectorSyntaxError(                                                                       │
+│   1072                   f'Expected a selector at position {index}',                                                  │
+│   1073                   self.pattern,                                                                                │
+│   1074                   index                                                                                        │
+│   1075               )                                                                                                │
+│   1076                                                                                                                │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-06-16 19:11:17.595] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-16 19:12:31.381] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-16 19:12:35.437] [FETCH]... ↓ https://hsn.com/shop/fashion/fa... | Status: True | Time: 3.99s
+[2025-06-16 19:12:36.532] [SCRAPE].. ◆ https://hsn.com/shop/fashion/fa... | Time: 1.094s
+[2025-06-16 19:12:36.534] [COMPLETE] ● https://hsn.com/shop/fashion/fa... | Status: True | Total: 5.09s
+[2025-06-16 19:12:49.132] [FETCH]... ↓ https://hsn.com/shop/fashion/fa... | Status: True | Time: 4.92s
+[2025-06-16 19:12:50.287] [SCRAPE].. ◆ https://hsn.com/shop/fashion/fa... | Time: 1.154s
+[2025-06-16 19:12:51.738] [EXTRACT]. ■ Completed for https://hsn.com/shop/fashion/fa... | Time: 1.4501054520369507s
+[2025-06-16 19:12:51.739] [COMPLETE] ● https://hsn.com/shop/fashion/fa... | Status: True | Total: 7.53s
+[2025-06-17 00:45:02.426] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 00:45:07.157] [FETCH]... ↓ https://hsn.com/shop/shoes/fa0045... | Status: True | Time: 4.66s
+[2025-06-17 00:45:08.305] [SCRAPE].. ◆ https://hsn.com/shop/shoes/fa0045... | Time: 1.147s
+[2025-06-17 00:45:08.306] [COMPLETE] ● https://hsn.com/shop/shoes/fa0045... | Status: True | Total: 5.81s
+[2025-06-17 00:45:19.004] [FETCH]... ↓ https://hsn.com/shop/shoes/fa0045... | Status: True | Time: 4.55s
+[2025-06-17 00:45:20.232] [SCRAPE].. ◆ https://hsn.com/shop/shoes/fa0045... | Time: 1.227s
+[2025-06-17 00:45:20.827] [EXTRACT]. ■ Completed for https://hsn.com/shop/shoes/fa0045... | Time: 0.5943828030140139s
+[2025-06-17 00:45:20.828] [COMPLETE] ● https://hsn.com/shop/shoes/fa0045... | Status: True | Total: 6.37s
+[2025-06-17 01:22:20.682] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 01:22:26.802] [FETCH]... ↓ https://hsn.com/shop/home/ho... | Status: True | Time: 6.07s
+[2025-06-17 01:22:28.100] [SCRAPE].. ◆ https://hsn.com/shop/home/ho... | Time: 1.297s
+[2025-06-17 01:22:28.102] [COMPLETE] ● https://hsn.com/shop/home/ho... | Status: True | Total: 7.37s
+[2025-06-17 01:22:41.676] [FETCH]... ↓ https://hsn.com/shop/home/ho... | Status: True | Time: 5.01s
+[2025-06-17 01:22:42.954] [SCRAPE].. ◆ https://hsn.com/shop/home/ho... | Time: 1.276s
+[2025-06-17 01:22:43.024] [ERROR]... × https://hsn.com/shop/home/ho... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 210 in lxml.etree._XPathEvaluatorBase._handle_result (src/lxml/xpath.pxi):   │
+│   Error: Invalid expression                                                                                           │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│                                                                                                                       │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-06-17 01:31:28.685] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 01:31:33.464] [FETCH]... ↓ https://hsn.com/shop/home/ho... | Status: True | Time: 4.71s
+[2025-06-17 01:31:34.623] [SCRAPE].. ◆ https://hsn.com/shop/home/ho... | Time: 1.158s
+[2025-06-17 01:31:34.624] [COMPLETE] ● https://hsn.com/shop/home/ho... | Status: True | Total: 5.87s
+[2025-06-17 01:31:50.699] [FETCH]... ↓ https://hsn.com/shop/home/ho... | Status: True | Time: 4.52s
+[2025-06-17 01:31:52.135] [SCRAPE].. ◆ https://hsn.com/shop/home/ho... | Time: 1.435s
+[2025-06-17 01:31:53.679] [EXTRACT]. ■ Completed for https://hsn.com/shop/home/ho... | Time: 1.5434463620185852s
+[2025-06-17 01:31:53.680] [COMPLETE] ● https://hsn.com/shop/home/ho... | Status: True | Total: 7.50s
+[2025-06-17 01:37:09.956] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 01:37:14.043] [FETCH]... ↓ https://hsn.com/shop/electronics/ec... | Status: True | Time: 4.02s
+[2025-06-17 01:37:15.150] [SCRAPE].. ◆ https://hsn.com/shop/electronics/ec... | Time: 1.106s
+[2025-06-17 01:37:15.151] [COMPLETE] ● https://hsn.com/shop/electronics/ec... | Status: True | Total: 5.13s
+[2025-06-17 01:37:30.454] [FETCH]... ↓ https://hsn.com/shop/electronics/ec... | Status: True | Time: 5.26s
+[2025-06-17 01:37:31.705] [SCRAPE].. ◆ https://hsn.com/shop/electronics/ec... | Time: 1.25s
+[2025-06-17 01:37:33.245] [EXTRACT]. ■ Completed for https://hsn.com/shop/electronics/ec... | Time: 1.5394720790209249s
+[2025-06-17 01:37:33.246] [COMPLETE] ● https://hsn.com/shop/electronics/ec... | Status: True | Total: 8.05s
+[2025-06-17 01:44:46.312] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 01:44:50.903] [FETCH]... ↓ https://hsn.com/shop/beauty/bs... | Status: True | Time: 4.53s
+[2025-06-17 01:44:52.053] [SCRAPE].. ◆ https://hsn.com/shop/beauty/bs... | Time: 1.149s
+[2025-06-17 01:44:52.054] [COMPLETE] ● https://hsn.com/shop/beauty/bs... | Status: True | Total: 5.68s
+[2025-06-17 01:46:35.691] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 01:46:40.381] [FETCH]... ↓ https://hsn.com/shop/beauty/bs... | Status: True | Time: 4.63s
+[2025-06-17 01:46:41.647] [SCRAPE].. ◆ https://hsn.com/shop/beauty/bs... | Time: 1.265s
+[2025-06-17 01:46:41.648] [COMPLETE] ● https://hsn.com/shop/beauty/bs... | Status: True | Total: 5.89s
+[2025-06-17 01:47:36.101] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 01:47:39.932] [FETCH]... ↓ https://hsn.com/shop/beauty/bs... | Status: True | Time: 3.78s
+[2025-06-17 01:47:41.042] [SCRAPE].. ◆ https://hsn.com/shop/beauty/bs... | Time: 1.109s
+[2025-06-17 01:47:41.043] [COMPLETE] ● https://hsn.com/shop/beauty/bs... | Status: True | Total: 4.89s
+[2025-06-17 01:47:57.448] [FETCH]... ↓ https://hsn.com/shop/beauty/bs... | Status: True | Time: 4.50s
+[2025-06-17 01:47:58.854] [SCRAPE].. ◆ https://hsn.com/shop/beauty/bs... | Time: 1.405s
+[2025-06-17 01:47:59.735] [EXTRACT]. ■ Completed for https://hsn.com/shop/beauty/bs... | Time: 0.8806980130029842s
+[2025-06-17 01:47:59.737] [COMPLETE] ● https://hsn.com/shop/beauty/bs... | Status: True | Total: 6.79s
+[2025-06-17 01:53:17.463] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 01:53:21.798] [FETCH]... ↓ https://hsn.com/shop/jewelry/j... | Status: True | Time: 4.28s
+[2025-06-17 01:53:22.727] [SCRAPE].. ◆ https://hsn.com/shop/jewelry/j... | Time: 0.928s
+[2025-06-17 01:53:22.728] [COMPLETE] ● https://hsn.com/shop/jewelry/j... | Status: True | Total: 5.21s
+[2025-06-17 01:53:41.209] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 01:53:44.651] [FETCH]... ↓ https://hsn.com/shop/jewelry/j... | Status: True | Time: 3.39s
+[2025-06-17 01:53:45.587] [SCRAPE].. ◆ https://hsn.com/shop/jewelry/j... | Time: 0.935s
+[2025-06-17 01:53:45.588] [COMPLETE] ● https://hsn.com/shop/jewelry/j... | Status: True | Total: 4.32s
+[2025-06-17 01:56:02.976] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 01:56:07.289] [FETCH]... ↓ https://hsn.com/shop/jewelry/j... | Status: True | Time: 4.24s
+[2025-06-17 01:56:08.280] [SCRAPE].. ◆ https://hsn.com/shop/jewelry/j... | Time: 0.99s
+[2025-06-17 01:56:08.281] [COMPLETE] ● https://hsn.com/shop/jewelry/j... | Status: True | Total: 5.23s
+[2025-06-17 01:56:26.573] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 01:56:30.362] [FETCH]... ↓ https://hsn.com/shop/jewelry/j... | Status: True | Time: 3.73s
+[2025-06-17 01:56:31.492] [SCRAPE].. ◆ https://hsn.com/shop/jewelry/j... | Time: 1.129s
+[2025-06-17 01:56:31.494] [COMPLETE] ● https://hsn.com/shop/jewelry/j... | Status: True | Total: 4.87s
+[2025-06-17 01:57:24.536] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 01:57:27.893] [FETCH]... ↓ https://hsn.com/shop/jewelry/j... | Status: True | Time: 3.31s
+[2025-06-17 01:57:28.877] [SCRAPE].. ◆ https://hsn.com/shop/jewelry/j... | Time: 0.983s
+[2025-06-17 01:57:28.878] [COMPLETE] ● https://hsn.com/shop/jewelry/j... | Status: True | Total: 4.29s
+[2025-06-17 01:57:42.508] [FETCH]... ↓ https://hsn.com/shop/jewelry/j... | Status: True | Time: 4.81s
+[2025-06-17 01:57:43.645] [SCRAPE].. ◆ https://hsn.com/shop/jewelry/j... | Time: 1.136s
+[2025-06-17 01:57:44.188] [EXTRACT]. ■ Completed for https://hsn.com/shop/jewelry/j... | Time: 0.5426361249992624s
+[2025-06-17 01:57:44.310] [COMPLETE] ● https://hsn.com/shop/jewelry/j... | Status: True | Total: 6.61s
+[2025-06-17 02:10:28.704] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 02:10:32.943] [FETCH]... ↓ https://hsn.com/shop/kitchen-and-food/qc... | Status: True | Time: 4.19s
+[2025-06-17 02:10:34.014] [SCRAPE].. ◆ https://hsn.com/shop/kitchen-and-food/qc... | Time: 1.07s
+[2025-06-17 02:10:34.015] [COMPLETE] ● https://hsn.com/shop/kitchen-and-food/qc... | Status: True | Total: 5.26s
+[2025-06-17 02:10:55.653] [FETCH]... ↓ https://hsn.com/shop/kitchen-and-food/qc... | Status: True | Time: 4.17s
+[2025-06-17 02:10:56.862] [SCRAPE].. ◆ https://hsn.com/shop/kitchen-and-food/qc... | Time: 1.208s
+[2025-06-17 02:10:57.416] [EXTRACT]. ■ Completed for https://hsn.com/shop/kitchen-and-food/qc... | Time: 0.5541562010184862s
+[2025-06-17 02:10:57.418] [COMPLETE] ● https://hsn.com/shop/kitchen-and-food/qc... | Status: True | Total: 5.93s
+[2025-06-17 02:11:33.358] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 02:11:37.781] [FETCH]... ↓ https://hsn.com/shop/health-and-wellness/hf... | Status: True | Time: 4.36s
+[2025-06-17 02:11:38.920] [SCRAPE].. ◆ https://hsn.com/shop/health-and-wellness/hf... | Time: 1.138s
+[2025-06-17 02:11:39.508] [EXTRACT]. ■ Completed for https://hsn.com/shop/health-and-wellness/hf... | Time: 0.587636738026049s
+[2025-06-17 02:11:39.509] [COMPLETE] ● https://hsn.com/shop/health-and-wellness/hf... | Status: True | Total: 6.09s
+[2025-06-17 02:13:02.472] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 02:13:05.202] [FETCH]... ↓ https://www.qvc.com/c/garden-and-outdoor-living/-/... | Status: True | Time: 2.68s
+[2025-06-17 02:13:06.213] [SCRAPE].. ◆ https://www.qvc.com/c/garden-and-outdoor-living/-/... | Time: 1.01s
+[2025-06-17 02:13:06.214] [COMPLETE] ● https://www.qvc.com/c/garden-and-outdoor-living/-/... | Status: True | Total: 3.69s
+[2025-06-17 02:13:23.417] [FETCH]... ↓ https://www.qvc.com/c/garden-and-outdoor-living/-/... | Status: True | Time: 4.79s
+[2025-06-17 02:13:24.633] [SCRAPE].. ◆ https://www.qvc.com/c/garden-and-outdoor-living/-/... | Time: 1.215s
+[2025-06-17 02:13:25.357] [EXTRACT]. ■ Completed for https://www.qvc.com/c/garden-and-outdoor-living/-/... | Time: 0.7240049609681591s
+[2025-06-17 02:13:25.358] [COMPLETE] ● https://www.qvc.com/c/garden-and-outdoor-living/-/... | Status: True | Total: 6.73s
+[2025-06-17 02:14:24.774] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 02:14:27.635] [FETCH]... ↓ https://www.qvc.com/c/fashion/-/lglt/c.html... | Status: True | Time: 2.81s
+[2025-06-17 02:14:28.699] [SCRAPE].. ◆ https://www.qvc.com/c/fashion/-/lglt/c.html... | Time: 1.063s
+[2025-06-17 02:14:29.213] [EXTRACT]. ■ Completed for https://www.qvc.com/c/fashion/-/lglt/c.html... | Time: 0.5137543299933895s
+[2025-06-17 02:14:29.293] [COMPLETE] ● https://www.qvc.com/c/fashion/-/lglt/c.html... | Status: True | Total: 4.47s
+[2025-06-17 02:14:41.042] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 02:14:42.928] [ERROR]... × Error closing context: BrowserContext.close: Target page, context or browser has been closed
+Browser logs:
+
+<launching> /Users/neil/Library/Caches/ms-playwright/chromium-1161/chrome-mac/Chromium.app/Contents/MacOS/Chromium --disable-field-trial-config --disable-background-networking --disable-background-timer-throttling --disable-backgrounding-occluded-windows --disable-back-forward-cache --disable-breakpad --disable-client-side-phishing-detection --disable-component-extensions-with-background-pages --disable-component-update --no-default-browser-check --disable-default-apps --disable-dev-shm-usage --disable-extensions --disable-features=AcceptCHFrame,AutoExpandDetailsElement,AvoidUnnecessaryBeforeUnloadCheckSync,CertificateTransparencyComponentUpdater,DeferRendererTasksAfterInput,DestroyProfileOnBrowserClose,DialMediaRouteProvider,ExtensionManifestV2Disabled,GlobalMediaControls,HttpsUpgrades,ImprovedCookieControls,LazyFrameLoading,LensOverlay,MediaRouter,PaintHolding,ThirdPartyStoragePartitioning,Translate --allow-pre-commit-input --disable-hang-monitor --disable-ipc-flooding-protection --disable-popup-blocking --disable-prompt-on-repost --disable-renderer-backgrounding --force-color-profile=srgb --metrics-recording-only --no-first-run --enable-automation --password-store=basic --use-mock-keychain --no-service-autorun --export-tagged-pdf --disable-search-engine-choice-screen --unsafely-disable-devtools-self-xss-warnings --enable-use-zoom-for-dsf=false --headless --hide-scrollbars --mute-audio --blink-settings=primaryHoverType=2,availableHoverTypes=2,primaryPointerType=4,availablePointerTypes=4 --no-sandbox --disable-gpu --disable-gpu-compositing --disable-software-rasterizer --no-sandbox --disable-dev-shm-usage --no-first-run --no-default-browser-check --disable-infobars --window-position=0,0 --ignore-certificate-errors --ignore-certificate-errors-spki-list --disable-blink-features=AutomationControlled --window-position=400,0 --disable-renderer-backgrounding --disable-ipc-flooding-protection --force-color-profile=srgb --mute-audio --disable-background-timer-throttling --window-size=1080,600 --user-data-dir=/var/folders/cz/1ztyq9fx3hq6vk03dptbj2mc0000gn/T/playwright_chromiumdev_profile-2oM0gn --remote-debugging-pipe --no-startup-window
+<launched> pid=83058
+[pid=83058] <gracefully close start>
+[2025-06-17 02:19:18.414] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 02:19:27.268] [FETCH]... ↓ https://www.qvc.com/c/beauty/-/rhty/c.html... | Status: True | Time: 8.70s
+[2025-06-17 02:19:30.736] [SCRAPE].. ◆ https://www.qvc.com/c/beauty/-/rhty/c.html... | Time: 3.467s
+[2025-06-17 02:19:30.739] [COMPLETE] ● https://www.qvc.com/c/beauty/-/rhty/c.html... | Status: True | Total: 12.17s
+[2025-06-17 02:20:18.251] [FETCH]... ↓ https://www.qvc.com/c/beauty/-/rhty/c.html... | Status: True | Time: 19.44s
+[2025-06-17 02:20:25.495] [SCRAPE].. ◆ https://www.qvc.com/c/beauty/-/rhty/c.html... | Time: 7.241s
+[2025-06-17 02:20:29.245] [EXTRACT]. ■ Completed for https://www.qvc.com/c/beauty/-/rhty/c.html... | Time: 3.7488788799964823s
+[2025-06-17 02:20:29.253] [COMPLETE] ● https://www.qvc.com/c/beauty/-/rhty/c.html... | Status: True | Total: 30.44s
+[2025-06-17 02:24:47.083] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 02:24:55.740] [FETCH]... ↓ https://www.qvc.com/c/jewelry/-/mflu/c.html... | Status: True | Time: 8.40s
+[2025-06-17 02:24:58.167] [SCRAPE].. ◆ https://www.qvc.com/c/jewelry/-/mflu/c.html... | Time: 2.425s
+[2025-06-17 02:24:58.170] [COMPLETE] ● https://www.qvc.com/c/jewelry/-/mflu/c.html... | Status: True | Total: 10.83s
+[2025-06-17 02:25:20.363] [FETCH]... ↓ https://www.qvc.com/c/jewelry/-/mflu/c.html... | Status: True | Time: 5.52s
+[2025-06-17 02:25:21.738] [SCRAPE].. ◆ https://www.qvc.com/c/jewelry/-/mflu/c.html... | Time: 1.373s
+[2025-06-17 02:25:22.474] [EXTRACT]. ■ Completed for https://www.qvc.com/c/jewelry/-/mflu/c.html... | Time: 0.7361806319677271s
+[2025-06-17 02:25:22.477] [COMPLETE] ● https://www.qvc.com/c/jewelry/-/mflu/c.html... | Status: True | Total: 7.64s
+[2025-06-17 02:26:48.915] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 02:26:51.578] [FETCH]... ↓ https://www.qvc.com/c/shoes/-/1doux/c.html... | Status: True | Time: 2.60s
+[2025-06-17 02:26:52.647] [SCRAPE].. ◆ https://www.qvc.com/c/shoes/-/1doux/c.html... | Time: 1.068s
+[2025-06-17 02:26:52.648] [COMPLETE] ● https://www.qvc.com/c/shoes/-/1doux/c.html... | Status: True | Total: 3.67s
+[2025-06-17 02:27:06.796] [FETCH]... ↓ https://www.qvc.com/c/shoes/-/1doux/c.html... | Status: True | Time: 2.60s
+[2025-06-17 02:27:08.145] [SCRAPE].. ◆ https://www.qvc.com/c/shoes/-/1doux/c.html... | Time: 1.348s
+[2025-06-17 02:27:08.545] [EXTRACT]. ■ Completed for https://www.qvc.com/c/shoes/-/1doux/c.html... | Time: 0.39988216798519716s
+[2025-06-17 02:27:08.548] [COMPLETE] ● https://www.qvc.com/c/shoes/-/1doux/c.html... | Status: True | Total: 4.35s
+[2025-06-17 16:14:35.273] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 16:14:38.653] [FETCH]... ↓ https://www.qvc.com/c/handbags-and-luggage/-/uoq0/... | Status: True | Time: 3.32s
+[2025-06-17 16:14:39.936] [SCRAPE].. ◆ https://www.qvc.com/c/handbags-and-luggage/-/uoq0/... | Time: 1.282s
+[2025-06-17 16:14:39.937] [COMPLETE] ● https://www.qvc.com/c/handbags-and-luggage/-/uoq0/... | Status: True | Total: 4.61s
+[2025-06-17 16:15:20.988] [FETCH]... ↓ https://www.qvc.com/c/handbags-and-luggage/-/uoq0/... | Status: True | Time: 3.58s
+[2025-06-17 16:15:22.115] [SCRAPE].. ◆ https://www.qvc.com/c/handbags-and-luggage/-/uoq0/... | Time: 1.126s
+[2025-06-17 16:15:22.603] [EXTRACT]. ■ Completed for https://www.qvc.com/c/handbags-and-luggage/-/uoq0/... | Time: 0.4879383569350466s
+[2025-06-17 16:15:22.905] [COMPLETE] ● https://www.qvc.com/c/handbags-and-luggage/-/uoq0/... | Status: True | Total: 5.50s
+[2025-06-17 16:18:14.493] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 16:18:16.889] [FETCH]... ↓ https://www.qvc.com/c/for-the-home/-/lglu/c.html... | Status: True | Time: 2.34s
+[2025-06-17 16:18:18.013] [SCRAPE].. ◆ https://www.qvc.com/c/for-the-home/-/lglu/c.html... | Time: 1.124s
+[2025-06-17 16:18:18.014] [COMPLETE] ● https://www.qvc.com/c/for-the-home/-/lglu/c.html... | Status: True | Total: 3.47s
+[2025-06-17 16:18:45.870] [FETCH]... ↓ https://www.qvc.com/c/for-the-home/-/lglu/c.html... | Status: True | Time: 2.39s
+[2025-06-17 16:18:47.073] [SCRAPE].. ◆ https://www.qvc.com/c/for-the-home/-/lglu/c.html... | Time: 1.202s
+[2025-06-17 16:18:47.593] [EXTRACT]. ■ Completed for https://www.qvc.com/c/for-the-home/-/lglu/c.html... | Time: 0.5195504649309441s
+[2025-06-17 16:18:47.595] [COMPLETE] ● https://www.qvc.com/c/for-the-home/-/lglu/c.html... | Status: True | Total: 4.12s
+[2025-06-17 16:22:40.619] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 16:22:46.253] [FETCH]... ↓ https://hsn.com/shop/crafts-and-sewing/ct... | Status: True | Time: 5.52s
+[2025-06-17 16:22:48.210] [SCRAPE].. ◆ https://hsn.com/shop/crafts-and-sewing/ct... | Time: 1.955s
+[2025-06-17 16:22:48.217] [COMPLETE] ● https://hsn.com/shop/crafts-and-sewing/ct... | Status: True | Total: 7.48s
+[2025-06-17 16:23:30.100] [FETCH]... ↓ https://hsn.com/shop/crafts-and-sewing/ct... | Status: True | Time: 6.67s
+[2025-06-17 16:23:31.652] [SCRAPE].. ◆ https://hsn.com/shop/crafts-and-sewing/ct... | Time: 1.551s
+[2025-06-17 16:23:36.523] [EXTRACT]. ■ Completed for https://hsn.com/shop/crafts-and-sewing/ct... | Time: 4.870037762913853s
+[2025-06-17 16:23:36.524] [COMPLETE] ● https://hsn.com/shop/crafts-and-sewing/ct... | Status: True | Total: 13.09s
+[2025-06-17 17:22:13.556] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 17:22:17.291] [FETCH]... ↓ https://kay.com/... | Status: True | Time: 3.68s
+[2025-06-17 17:22:17.357] [SCRAPE].. ◆ https://kay.com/... | Time: 0.066s
+[2025-06-17 17:22:17.405] [EXTRACT]. ■ Completed for https://kay.com/... | Time: 0.047535005025565624s
+[2025-06-17 17:22:17.406] [COMPLETE] ● https://kay.com/... | Status: True | Total: 3.81s
+[2025-06-17 17:26:20.745] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 17:26:24.203] [FETCH]... ↓ https://kay.com/... | Status: True | Time: 3.42s
+[2025-06-17 17:26:24.250] [SCRAPE].. ◆ https://kay.com/... | Time: 0.046s
+[2025-06-17 17:26:24.307] [EXTRACT]. ■ Completed for https://kay.com/... | Time: 0.05674824595917016s
+[2025-06-17 17:26:24.307] [COMPLETE] ● https://kay.com/... | Status: True | Total: 3.53s
+[2025-06-17 17:28:22.514] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 17:28:27.349] [FETCH]... ↓ https://hsn.com/shop/fan-shop/sp... | Status: True | Time: 4.74s
+[2025-06-17 17:28:28.504] [SCRAPE].. ◆ https://hsn.com/shop/fan-shop/sp... | Time: 1.154s
+[2025-06-17 17:28:28.506] [COMPLETE] ● https://hsn.com/shop/fan-shop/sp... | Status: True | Total: 5.90s
+[2025-06-17 17:29:14.906] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-17 17:29:18.327] [FETCH]... ↓ https://kay.com/... | Status: True | Time: 3.38s
+[2025-06-17 17:29:18.390] [SCRAPE].. ◆ https://kay.com/... | Time: 0.062s
+[2025-06-17 17:29:18.438] [EXTRACT]. ■ Completed for https://kay.com/... | Time: 0.0482843330828473s
+[2025-06-17 17:29:18.439] [COMPLETE] ● https://kay.com/... | Status: True | Total: 3.50s
+[2025-06-17 17:29:47.234] [FETCH]... ↓ https://kay.com/clearance/new-markdowns/c/90000010... | Status: True | Time: 3.93s
+[2025-06-17 17:29:47.446] [SCRAPE].. ◆ https://kay.com/clearance/new-markdowns/c/90000010... | Time: 0.21s
+[2025-06-17 17:29:47.446] [COMPLETE] ● https://kay.com/clearance/new-markdowns/c/90000010... | Status: True | Total: 4.15s
+[2025-06-17 17:30:00.570] [FETCH]... ↓ https://kay.com/clearance/new-markdowns/c/90000010... | Status: True | Time: 3.14s
+[2025-06-17 17:30:00.767] [SCRAPE].. ◆ https://kay.com/clearance/new-markdowns/c/90000010... | Time: 0.196s
+[2025-06-17 17:30:00.871] [EXTRACT]. ■ Completed for https://kay.com/clearance/new-markdowns/c/90000010... | Time: 0.10359899804461747s
+[2025-06-17 17:30:00.872] [COMPLETE] ● https://kay.com/clearance/new-markdowns/c/90000010... | Status: True | Total: 3.45s
+[2025-06-18 22:12:14.688] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-18 22:12:19.989] [FETCH]... ↓ https://kay.com/... | Status: True | Time: 5.22s
+[2025-06-18 22:12:20.128] [SCRAPE].. ◆ https://kay.com/... | Time: 0.137s
+[2025-06-18 22:12:20.222] [EXTRACT]. ■ Completed for https://kay.com/... | Time: 0.09209848090540618s
+[2025-06-18 22:12:20.223] [COMPLETE] ● https://kay.com/... | Status: True | Total: 5.47s
+[2025-06-18 22:12:55.491] [FETCH]... ↓ https://kay.com/womens-jewelry?icid=PROMOHEADER:WO... | Status: True | Time: 3.44s
+[2025-06-18 22:12:55.682] [SCRAPE].. ◆ https://kay.com/womens-jewelry?icid=PROMOHEADER:WO... | Time: 0.19s
+[2025-06-18 22:12:55.682] [COMPLETE] ● https://kay.com/womens-jewelry?icid=PROMOHEADER:WO... | Status: True | Total: 3.63s
+[2025-06-18 22:13:09.473] [FETCH]... ↓ https://kay.com/womens-jewelry?icid=PROMOHEADER:WO... | Status: True | Time: 3.35s
+[2025-06-18 22:13:09.682] [SCRAPE].. ◆ https://kay.com/womens-jewelry?icid=PROMOHEADER:WO... | Time: 0.208s
+[2025-06-18 22:13:09.821] [EXTRACT]. ■ Completed for https://kay.com/womens-jewelry?icid=PROMOHEADER:WO... | Time: 0.1375799149973318s
+[2025-06-18 22:13:09.822] [COMPLETE] ● https://kay.com/womens-jewelry?icid=PROMOHEADER:WO... | Status: True | Total: 3.70s
+[2025-06-18 22:13:14.169] [FETCH]... ↓ https://zales.com/... | Status: True | Time: 4.27s
+[2025-06-18 22:13:14.232] [SCRAPE].. ◆ https://zales.com/... | Time: 0.061s
+[2025-06-18 22:13:14.294] [EXTRACT]. ■ Completed for https://zales.com/... | Time: 0.06114256801083684s
+[2025-06-18 22:13:14.295] [COMPLETE] ● https://zales.com/... | Status: True | Total: 4.40s
+[2025-06-18 22:13:46.427] [FETCH]... ↓ https://zales.com/new?icid=MEGA:NEW:LP... | Status: True | Time: 3.34s
+[2025-06-18 22:13:46.548] [SCRAPE].. ◆ https://zales.com/new?icid=MEGA:NEW:LP... | Time: 0.12s
+[2025-06-18 22:13:46.549] [COMPLETE] ● https://zales.com/new?icid=MEGA:NEW:LP... | Status: True | Total: 3.47s
+[2025-06-18 22:13:56.136] [FETCH]... ↓ https://zales.com/new?icid=MEGA:NEW:LP... | Status: True | Time: 2.16s
+[2025-06-18 22:13:56.228] [SCRAPE].. ◆ https://zales.com/new?icid=MEGA:NEW:LP... | Time: 0.092s
+[2025-06-18 22:13:56.269] [EXTRACT]. ■ Completed for https://zales.com/new?icid=MEGA:NEW:LP... | Time: 0.040418150019831955s
+[2025-06-18 22:13:56.269] [COMPLETE] ● https://zales.com/new?icid=MEGA:NEW:LP... | Status: True | Total: 2.30s
+[2025-06-18 22:13:59.424] [FETCH]... ↓ https://jared.com/... | Status: True | Time: 3.13s
+[2025-06-18 22:13:59.458] [SCRAPE].. ◆ https://jared.com/... | Time: 0.032s
+[2025-06-18 22:13:59.502] [EXTRACT]. ■ Completed for https://jared.com/... | Time: 0.04396775003988296s
+[2025-06-18 22:13:59.503] [COMPLETE] ● https://jared.com/... | Status: True | Total: 3.21s
+[2025-06-18 22:14:20.993] [FETCH]... ↓ https://jared.com/jewelry/new/c/7000000147?icid=MM... | Status: True | Time: 5.35s
+[2025-06-18 22:14:21.135] [SCRAPE].. ◆ https://jared.com/jewelry/new/c/7000000147?icid=MM... | Time: 0.141s
+[2025-06-18 22:14:21.136] [COMPLETE] ● https://jared.com/jewelry/new/c/7000000147?icid=MM... | Status: True | Total: 5.49s
+[2025-06-18 22:14:31.176] [FETCH]... ↓ https://jared.com/jewelry/new/c/7000000147?icid=MM... | Status: True | Time: 2.54s
+[2025-06-18 22:14:31.295] [SCRAPE].. ◆ https://jared.com/jewelry/new/c/7000000147?icid=MM... | Time: 0.117s
+[2025-06-18 22:14:31.356] [EXTRACT]. ■ Completed for https://jared.com/jewelry/new/c/7000000147?icid=MM... | Time: 0.060824782005511224s
+[2025-06-18 22:14:31.356] [COMPLETE] ● https://jared.com/jewelry/new/c/7000000147?icid=MM... | Status: True | Total: 2.72s
+[2025-06-18 22:14:31.767] [ERROR]... × https://tiffany.com/... | Error: 
+┌───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+│ × Unexpected error in _crawl_web at line 582 in _crawl_web (../../.asdf/installs/python/3.11.3/lib/python3.11/site-   │
+│ packages/crawl4ai/async_crawler_strategy.py):                                                                         │
+│   Error: Failed on navigating ACS-GOTO:                                                                               │
+│   Page.goto: net::ERR_CONNECTION_REFUSED at https://tiffany.com/                                                      │
+│   Call log:                                                                                                           │
+│   - navigating to "https://tiffany.com/", waiting until "domcontentloaded"                                            │
+│                                                                                                                       │
+│                                                                                                                       │
+│   Code context:                                                                                                       │
+│   577                       response = await page.goto(                                                               │
+│   578                           url, wait_until=config.wait_until, timeout=config.page_timeout                        │
+│   579                       )                                                                                         │
+│   580                       redirected_url = page.url                                                                 │
+│   581                   except Error as e:                                                                            │
+│   582 →                     raise RuntimeError(f"Failed on navigating ACS-GOTO:\n{str(e)}")                           │
+│   583                                                                                                                 │
+│   584                   await self.execute_hook(                                                                      │
+│   585                       "after_goto", page, context=context, url=url, response=response, config=config            │
+│   586                   )                                                                                             │
+│   587                                                                                                                 │
+└───────────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
+
+[2025-06-18 22:22:06.080] [INIT].... → Crawl4AI 0.5.0.post8
+[2025-06-18 22:22:09.504] [FETCH]... ↓ https://www.kay.com... | Status: True | Time: 3.38s
+[2025-06-18 22:22:09.576] [SCRAPE].. ◆ https://www.kay.com... | Time: 0.072s
+[2025-06-18 22:22:09.631] [EXTRACT]. ■ Completed for https://www.kay.com... | Time: 0.05450755695346743s
+[2025-06-18 22:22:09.632] [COMPLETE] ● https://www.kay.com... | Status: True | Total: 3.51s
+[2025-06-18 22:23:03.383] [FETCH]... ↓ https://kay.com/kay-mens-jewelry-collection?icid=P... | Status: True | Time: 2.53s
+[2025-06-18 22:23:03.508] [SCRAPE].. ◆ https://kay.com/kay-mens-jewelry-collection?icid=P... | Time: 0.124s
+[2025-06-18 22:23:03.508] [COMPLETE] ● https://kay.com/kay-mens-jewelry-collection?icid=P... | Status: True | Total: 2.65s
+[2025-06-18 22:23:13.221] [FETCH]... ↓ https://kay.com/kay-mens-jewelry-collection?icid=P... | Status: True | Time: 2.55s
+[2025-06-18 22:23:13.352] [SCRAPE].. ◆ https://kay.com/kay-mens-jewelry-collection?icid=P... | Time: 0.13s
+[2025-06-18 22:23:13.412] [EXTRACT]. ■ Completed for https://kay.com/kay-mens-jewelry-collection?icid=P... | Time: 0.059773762011900544s
+[2025-06-18 22:23:13.413] [COMPLETE] ● https://kay.com/kay-mens-jewelry-collection?icid=P... | Status: True | Total: 2.74s
+[2025-06-18 22:23:15.908] [FETCH]... ↓ https://www.zales.com... | Status: True | Time: 2.47s
+[2025-06-18 22:23:15.948] [SCRAPE].. ◆ https://www.zales.com... | Time: 0.039s
+[2025-06-18 22:23:15.984] [EXTRACT]. ■ Completed for https://www.zales.com... | Time: 0.03594942204654217s
+[2025-06-18 22:23:15.984] [COMPLETE] ● https://www.zales.com... | Status: True | Total: 2.54s
+[2025-06-18 22:23:25.802] [FETCH]... ↓ https://zales.com/collections?icid=MEGA:COLLECTION... | Status: True | Time: 2.73s
+[2025-06-18 22:23:25.876] [SCRAPE].. ◆ https://zales.com/collections?icid=MEGA:COLLECTION... | Time: 0.073s
+[2025-06-18 22:23:25.876] [COMPLETE] ● https://zales.com/collections?icid=MEGA:COLLECTION... | Status: True | Total: 2.80s
+[2025-06-18 22:23:34.032] [FETCH]... ↓ https://zales.com/collections?icid=MEGA:COLLECTION... | Status: True | Time: 2.25s
+[2025-06-18 22:23:34.118] [SCRAPE].. ◆ https://zales.com/collections?icid=MEGA:COLLECTION... | Time: 0.085s
+[2025-06-18 22:23:34.154] [EXTRACT]. ■ Completed for https://zales.com/collections?icid=MEGA:COLLECTION... | Time: 0.03507976408582181s
+[2025-06-18 22:23:34.154] [COMPLETE] ● https://zales.com/collections?icid=MEGA:COLLECTION... | Status: True | Total: 2.38s
+[2025-06-18 22:23:37.127] [FETCH]... ↓ https://www.jared.com... | Status: True | Time: 2.95s
+[2025-06-18 22:23:37.173] [SCRAPE].. ◆ https://www.jared.com... | Time: 0.044s
+[2025-06-18 22:23:37.220] [EXTRACT]. ■ Completed for https://www.jared.com... | Time: 0.04695990006439388s
+[2025-06-18 22:23:37.221] [COMPLETE] ● https://www.jared.com... | Status: True | Total: 3.04s
+[2025-06-18 22:23:48.888] [FETCH]... ↓ https://jared.com/engagement-rings?icid=MM:E:Engag... | Status: True | Time: 3.34s
+[2025-06-18 22:23:48.954] [SCRAPE].. ◆ https://jared.com/engagement-rings?icid=MM:E:Engag... | Time: 0.065s
+[2025-06-18 22:23:48.955] [COMPLETE] ● https://jared.com/engagement-rings?icid=MM:E:Engag... | Status: True | Total: 3.41s
+[2025-06-18 22:23:54.942] [FETCH]... ↓ https://jared.com/engagement-rings?icid=MM:E:Engag... | Status: True | Time: 2.21s
+[2025-06-18 22:23:55.006] [SCRAPE].. ◆ https://jared.com/engagement-rings?icid=MM:E:Engag... | Time: 0.064s
+[2025-06-18 22:23:55.041] [EXTRACT]. ■ Completed for https://jared.com/engagement-rings?icid=MM:E:Engag... | Time: 0.03418442397378385s
+[2025-06-18 22:23:55.041] [COMPLETE] ● https://jared.com/engagement-rings?icid=MM:E:Engag... | Status: True | Total: 2.31s
+[2025-06-18 22:23:57.423] [FETCH]... ↓ https://www.tiffany.com... | Status: True | Time: 2.35s
+[2025-06-18 22:23:57.602] [SCRAPE].. ◆ https://www.tiffany.com... | Time: 0.178s
+[2025-06-18 22:23:58.115] [EXTRACT]. ■ Completed for https://www.tiffany.com... | Time: 0.5130116540240124s
+[2025-06-18 22:23:58.116] [COMPLETE] ● https://www.tiffany.com... | Status: True | Total: 3.05s
+[2025-06-18 22:25:09.858] [FETCH]... ↓ https://www.tiffany.com/jewelry/shop/return-to-tif... | Status: True | Time: 2.44s
+[2025-06-18 22:25:10.326] [SCRAPE].. ◆ https://www.tiffany.com/jewelry/shop/return-to-tif... | Time: 0.467s
+[2025-06-18 22:25:10.327] [COMPLETE] ● https://www.tiffany.com/jewelry/shop/return-to-tif... | Status: True | Total: 2.91s
+[2025-06-18 22:25:22.914] [FETCH]... ↓ https://www.tiffany.com/jewelry/shop/return-to-tif... | Status: True | Time: 2.98s
+[2025-06-18 22:25:23.364] [SCRAPE].. ◆ https://www.tiffany.com/jewelry/shop/return-to-tif... | Time: 0.449s
+[2025-06-18 22:25:23.569] [EXTRACT]. ■ Completed for https://www.tiffany.com/jewelry/shop/return-to-tif... | Time: 0.2048078840598464s
+[2025-06-18 22:25:23.570] [COMPLETE] ● https://www.tiffany.com/jewelry/shop/return-to-tif... | Status: True | Total: 3.64s
+[2025-06-18 22:25:29.660] [FETCH]... ↓ https://www.cartier.com... | Status: True | Time: 6.06s
+[2025-06-18 22:25:29.955] [SCRAPE].. ◆ https://www.cartier.com... | Time: 0.294s
+[2025-06-18 22:25:30.167] [EXTRACT]. ■ Completed for https://www.cartier.com... | Time: 0.2117091800319031s
+[2025-06-18 22:25:30.168] [COMPLETE] ● https://www.cartier.com... | Status: True | Total: 6.57s
+[2025-06-18 22:27:56.961] [FETCH]... ↓ https://www.cartier.com/en-us/high-jewelry/all-cre... | Status: True | Time: 5.48s
+[2025-06-18 22:27:57.438] [SCRAPE].. ◆ https://www.cartier.com/en-us/high-jewelry/all-cre... | Time: 0.476s
+[2025-06-18 22:27:57.440] [COMPLETE] ● https://www.cartier.com/en-us/high-jewelry/all-cre... | Status: True | Total: 5.96s
